@@ -1,5 +1,6 @@
-var blueprint = require ('@onehilltech/blueprint')
-  , util      = require ('util')
+var blueprint = require ('@onehilltech/blueprint'),
+    request   = require('superagent'),
+    util      = require ('util')
   ;
 
 function LoginController () {
@@ -13,15 +14,35 @@ LoginController.prototype.echoName = function () {
 
   return function (req, res) {
 
-    if(req.body.name.length < 5){
+    var userData = {
+      username: req.body.username,
+      password: req.body.password
+    }
+
+    //preliminary checks before sending to the api server
+    if(userData.username.length < 5){
       return res.render ('login.pug', {message: "Username not valid"});
     }
 
-    if(req.body.password.length < 5){
+    if(userData.password.length < 5){
       return res.render ('login.pug', {message: "Password not valid"});
     }
 
-    return res.render ('loggedin.pug', {name: req.body.name});
+    //api server requests
+    request
+        .post('localhost:5000/login')
+        .send(userData)
+        //.set('Authorization', 'bearer ' + access_token)
+        .end(function (err, res) {
+          if (err) {
+            console.log(err);
+            return res.render ('login.pug', {message: "We ran into the following error: " + err.toString()});
+          } else {
+            console.log (res.token);
+            return res.render ('loggedin.pug', {name: req.body.name});
+          }
+        });
+
   };
 };
 
