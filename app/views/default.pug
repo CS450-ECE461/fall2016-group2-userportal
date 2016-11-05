@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
     head
-        title Logged In
+        title Default
 
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
@@ -9,10 +9,9 @@ html(lang="en")
 
     body
         div.container
-            h1 You have now logged in!
+            h1 Default
 
-            form.form-horizontal(method='post', action='/loggedin')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type="submit") Logout
+            //automatically redirect to login if no valid session, but redirect to loggedin if there is a vlaid session
+            form.form-horizontal(method='post', action='/default')
+                button.btn.btn-default(type="submit") Go To Login
 
-        blockquote #{message}

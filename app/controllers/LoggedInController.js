@@ -12,7 +12,7 @@ LoggedInController.prototype.echoName = function () {
   var self = this;
 
   return function (req, res) {
-    return res.render ('loggedin.pug', {name: req.body.name, password: req.body.password});
+    return res.render ('login.pug', {message: "You have successfully logged out."});
   };
 };
 
