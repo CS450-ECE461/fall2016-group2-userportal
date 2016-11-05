@@ -14,35 +14,39 @@ LoginController.prototype.echoName = function () {
 
   return function (req, res) {
 
-    var userData = {
-      username: req.body.username,
-      password: req.body.password
-    }
-
     //preliminary checks before sending to the api server
-    if(userData.username.length < 5){
+    if(req.body.username.length < 5){
       return res.render ('login.pug', {message: "Username not valid"});
     }
 
-    if(userData.password.length < 5){
-      return res.render ('login.pug', {message: "Password not valid"});
+    if(req.body.password.length < 5){
+       return res.render ('login.pug', {message: "Password not valid"});
     }
 
-    //api server requests
-    request
-        .post('localhost:5000/login')
-        .send(userData)
-        //.set('Authorization', 'bearer ' + access_token)
-        .end(function (err, res) {
-          if (err) {
-            console.log(err);
-            return res.render ('login.pug', {message: "We ran into the following error: " + err.toString()});
-          } else {
-            console.log (res.token);
-            return res.render ('loggedin.pug', {name: req.body.name});
-          }
-        });
 
+
+
+      var userData = {
+          username: req.body.username,
+          password: req.body.password
+      }
+
+      //api server requests
+      request
+          .post('localhost:5000/login')
+          .send(userData)
+          //.set('Authorization', 'bearer ' + access_token)
+          .end(function (err, res) {
+              if (err) {
+                  console.log(err);
+              } else {
+                  console.log (res.token);
+                  return res.render ('loggedin.pug', {name: req.body.name});
+              }
+          });
+
+
+    return res.render ('login.pug', {message: "Error logging in." + req.body.user});
   };
 };
 
