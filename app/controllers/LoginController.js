@@ -26,7 +26,6 @@ LoginController.prototype.login = function () {
         request
             .post('localhost:5000/login')
             .send(userData)
-            //.set('Authorization', 'bearer ' + access_token)
             .end(function (err, resp) {
                 if (err) {
                     console.log(err);
