@@ -8,11 +8,11 @@ function LoggedInController () {
 
 blueprint.controller (LoggedInController);
 
-LoggedInController.prototype.echoName = function () {
+LoggedInController.prototype.logout = function () {
   var self = this;
 
   return function (req, res) {
-    return res.render ('login.pug', {message: "You are now logged in"});
+    return res.render ('login.pug', {message: "You have successfully logged out."});
   };
 };
 

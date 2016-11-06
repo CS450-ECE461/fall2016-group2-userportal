@@ -9,7 +9,7 @@ function LoginController () {
 
 blueprint.controller (LoginController);
 
-LoginController.prototype.echoName = function () {
+LoginController.prototype.login = function () {
     var self = this;
 
     return function (req, res) {
@@ -19,35 +19,40 @@ LoginController.prototype.echoName = function () {
             return res.render ('login.pug', {message: "Username not valid"});
         }
 
-        if(req.body.password.length < 5){
+        if(req.body.password.length < 3){
             return res.render ('login.pug', {message: "Password not valid"});
         }
 
+        var token;
+
 
         var userData = {
-            "user" : {
-                "username"  : "djpeck",
-                "password"  : "test",
-                "email"     : "djpeck@iupui.edu",
-                "job_title" : "Software Engineer"
-            }
+            "username": "djpeck",
+            "password": "test"
         }
 
         //api server requests
         request
-            .post('localhost:5000/dev/users')
+            .post('localhost:5000/login')
             .send(userData)
             //.set('Authorization', 'bearer ' + access_token)
-            .end(function (err, res) {
+            .end(function (err, resp) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log (res.token);
-                    return res.render ('loggedin.pug', {});
+                    token = resp.body.token;
+                    console.log(token);
+                }
+
+
+                if(token){
+                    return res.render('loggedin.pug', {});
+                }
+                else{
+                    return res.render('login.pug', {message : "Error authenticating account."});
                 }
             });
 
-        return res.render ('login.pug', {message: "Error logging in."});
     };
 };
 
