@@ -18,3 +18,4 @@ DefaultController.prototype.landing = function () {
 };
 
 module.exports = exports = DefaultController;
+
