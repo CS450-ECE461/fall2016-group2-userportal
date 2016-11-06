@@ -13,9 +13,10 @@ DefaultController.prototype.landing = function () {
   var self = this;
 
   return function (req, res) {
-    return res.render ('login.pug', {});
+    return res.redirect ('login');
   };
 };
+
 
 module.exports = exports = DefaultController;
 
