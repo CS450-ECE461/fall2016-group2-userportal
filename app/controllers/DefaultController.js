@@ -8,7 +8,7 @@ function DefaultController () {
 
 blueprint.controller (DefaultController);
 
-DefaultController.prototype.echoName = function () {
+DefaultController.prototype.landing = function () {
   var self = this;
 
   return function (req, res) {

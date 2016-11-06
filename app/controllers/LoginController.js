@@ -14,21 +14,12 @@ LoginController.prototype.login = function () {
 
     return function (req, res) {
 
-        //preliminary checks
-        if(req.body.name.length < 5){
-            return res.render ('login.pug', {message: "Username not valid"});
-        }
-
-        if(req.body.password.length < 3){
-            return res.render ('login.pug', {message: "Password not valid"});
-        }
-
         var token;
 
 
         var userData = {
-            "username": "djpeck",
-            "password": "test"
+            "username": req.body.name,
+            "password": req.body.password
         }
 
         //api server requests
@@ -44,15 +35,13 @@ LoginController.prototype.login = function () {
                     console.log(token);
                 }
 
-
                 if(token){
                     return res.render('loggedin.pug', {});
                 }
                 else{
-                    return res.render('login.pug', {message : "Error authenticating account."});
+                    return res.render('login.pug', {message: "Error authenticating account."});
                 }
             });
-
     };
 };
 
