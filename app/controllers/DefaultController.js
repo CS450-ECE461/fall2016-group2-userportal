@@ -8,6 +8,7 @@ function DefaultController () {
 
 blueprint.controller (DefaultController);
 
+
 DefaultController.prototype.landing = function () {
   var self = this;
 
