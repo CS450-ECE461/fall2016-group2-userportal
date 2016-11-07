@@ -16,10 +16,21 @@
     "superagent": "^2.3.0",
     "supertest": "^2.0.1"
   },
-  "devDependencies": {},
+  "devDependencies":{
+    "@types/core-js": "^0.9.34",
+    "@types/node": "^6.0.45",
+    "concurrently": "^3.0.0",
+    "lite-server": "^2.2.2",
+    "typescript": "^2.0.3"
+  },
+
   "license": "Apache-2.0",
   "engines": {
     "node": ">=4.0.0",
     "npm": ">=3.0.0"
   }
 }
+
+
+
+
