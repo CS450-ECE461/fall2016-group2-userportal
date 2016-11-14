@@ -9,10 +9,10 @@ function MockController () {
 
 blueprint.controller (MockController);
 
-MockController.prototype.apiServerLogin = function () {
+MockController.prototype.mock = function () {
     return function (req, res) {
 
-        return res.redirect('/userdashboard');
+        res.status (200).json ({ token: 'abc' });
 
     };
 };

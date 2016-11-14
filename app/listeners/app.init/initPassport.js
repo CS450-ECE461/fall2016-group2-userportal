@@ -23,7 +23,7 @@ function initPassport (app) {
 
 
         request
-            .post('35.163.81.202:5000/login')
+            .post('/mock')
             .send(userData)
             .end(function (err, resp) {
                 if(err) {
