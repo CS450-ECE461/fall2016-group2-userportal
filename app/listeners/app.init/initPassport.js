@@ -20,7 +20,8 @@ function initPassport (app) {
             "password" : password
         };
 
-        /*
+
+
         request
             .post('35.163.81.202:5000/login')
             .send(userData)
@@ -38,7 +39,7 @@ function initPassport (app) {
                 return done (null,token);
 
             });
-            */
+
 
 
 
