@@ -3,13 +3,13 @@ request   = require ('superagent')
     , util      = require ('util')
 ;
 
-function LoginController () {
+function MockController () {
     blueprint.BaseController.call (this);
 }
 
-blueprint.controller (LoginController);
+blueprint.controller (MockController);
 
-LoginController.prototype.login = function () {
+MockController.prototype.apiServerLogin = function () {
     return function (req, res) {
 
         return res.redirect('/userdashboard');
@@ -18,4 +18,4 @@ LoginController.prototype.login = function () {
 };
 
 
-module.exports = exports = LoginController;
+module.exports = exports = MockController;

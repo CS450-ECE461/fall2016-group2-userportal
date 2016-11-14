@@ -20,15 +20,14 @@ function initPassport (app) {
             "password" : password
         };
 
-       /* request
-            .post('localhost:5000/admin/login')
+        /*
+        request
+            .post('35.163.81.202:5000/login')
             .send(userData)
             .end(function (err, resp) {
                 if(err) {
                     if (err.status == '400') {
                         return done (null,false,{message: "Password is incorrect."});
-                    } else if (err.status == '401') {
-                        return done (null,false,{message: "User is not an admin."});
                     }
 
                     return done (err,false);
@@ -41,7 +40,9 @@ function initPassport (app) {
             });
             */
 
-       return done(null,'abc');
+
+
+
 
     }
 }
