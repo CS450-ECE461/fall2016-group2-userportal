@@ -1,6 +1,6 @@
 var blueprint = require ('@onehilltech/blueprint')
-  , util      = require ('util')
-  ;
+    , util      = require ('util')
+    ;
 
 function UserDashboardController () {
   blueprint.BaseController.call (this);
@@ -9,10 +9,10 @@ function UserDashboardController () {
 blueprint.controller (UserDashboardController);
 
 UserDashboardController.prototype.logout = function () {
-  var self = this;
 
   return function (req, res) {
-    return res.render ('login.pug', {message: "You have successfully logged out."});
+    req.logout ();
+    return res.redirect ('/login');
   };
 };
 

@@ -23,7 +23,7 @@ function initPassport (app) {
 
 
         request
-            .post('/mock')
+            .post('35.163.81.202:5000/login')
             .send(userData)
             .end(function (err, resp) {
                 if(err) {
@@ -41,6 +41,8 @@ function initPassport (app) {
             });
 
 
+
+        return done(null,false,{message:"bad password"});
 
 
 
