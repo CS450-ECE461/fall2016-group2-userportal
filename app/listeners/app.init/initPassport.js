@@ -3,7 +3,6 @@
  */
 var passport      = require ('passport')
     , LocalStrategy = require ('passport-local').Strategy
-
     ;
 
 module.exports = initPassport;
@@ -21,13 +20,10 @@ function initPassport (app) {
         };
 
 
-        /*
         request
             .post('localhost:5000/mock')
             .send(userData)
             .end(function (err, resp) {
-                Console.log('hi there');
-
                 if(err) {
                     if (err.status == '400') {
                         return done (null,false,{message: "Password is incorrect."});
@@ -46,6 +42,5 @@ function initPassport (app) {
 
 
         return done(null,false,{message:"bad password"});
-        */
     }
 }
