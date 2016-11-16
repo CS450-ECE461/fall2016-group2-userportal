@@ -1,15 +1,14 @@
 var passport      = require ('passport')
-    , LocalStrategy = require ('passport-local').Strategy
-    ;
-
-module.exports = initPassport;
+  , LocalStrategy = require ('passport-local').Strategy
+  , request       = require ('superagent')
+  ;
 
 function initPassport (app) {
 
     var opts = {name: 'username',password:'password', session: true};
-    passport.use (new LocalStrategy (opts, authorize));
 
     function authorize (username, password, done) {
+        console.log ('test');
         var token;
 
         var userData = {
@@ -17,9 +16,8 @@ function initPassport (app) {
             "password" : password
         };
 
-
         request
-            .post('localhost:5000/mock')
+            .post('localhost:5002/mock')
             .send(userData)
             .end(function (err, resp) {
                 if(err) {
@@ -31,11 +29,14 @@ function initPassport (app) {
 
                     return done (err,false);
 
-                }else {
+                } else {
                     token = resp.body.token;
                 }
                 return done (null,token);
-
             });
     }
+
+    passport.use (new LocalStrategy (opts, authorize));
 }
+
+module.exports = exports = initPassport;

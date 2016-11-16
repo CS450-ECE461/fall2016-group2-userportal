@@ -4,7 +4,7 @@ var blueprint = require ('@onehilltech/blueprint')
 module.exports = exports = {
     protocols : {
         http : {
-            port: 5000
+            port: 5002
         }
     },
 
