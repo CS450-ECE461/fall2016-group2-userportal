@@ -1,14 +1,11 @@
-/**
- * Created by terrabyte on 11/14/16.
- */
 var passport      = require ('passport')
     , LocalStrategy = require ('passport-local').Strategy
-
     ;
 
 module.exports = initPassport;
 
 function initPassport (app) {
+
     var opts = {name: 'username',password:'password', session: true};
     passport.use (new LocalStrategy (opts, authorize));
 
@@ -21,31 +18,24 @@ function initPassport (app) {
         };
 
 
-        /*
         request
             .post('localhost:5000/mock')
             .send(userData)
             .end(function (err, resp) {
-                Console.log('hi there');
-
                 if(err) {
                     if (err.status == '400') {
                         return done (null,false,{message: "Password is incorrect."});
+                    } else if (err.status == '401') {
+                        return done (null,false,{message: "User is not an admin."});
                     }
 
                     return done (err,false);
 
                 }else {
-
                     token = resp.body.token;
                 }
-
                 return done (null,token);
+
             });
-
-
-
-        return done(null,false,{message:"bad password"});
-        */
     }
 }

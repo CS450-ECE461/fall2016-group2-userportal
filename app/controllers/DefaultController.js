@@ -3,15 +3,15 @@ var blueprint = require ('@onehilltech/blueprint')
     ;
 
 function DefaultController () {
-  blueprint.BaseController.call (this);
+    blueprint.BaseController.call (this);
 }
 
 blueprint.controller (DefaultController);
 
 DefaultController.prototype.landing = function () {
-  return function (req, res) {
-    return res.redirect ('/login');
-  };
+    return function (req, res) {
+        return res.redirect ('/login');
+    };
 };
 
 module.exports = exports = DefaultController;
