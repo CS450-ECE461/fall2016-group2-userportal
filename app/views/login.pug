@@ -1,3 +1,33 @@
+<<<<<<< HEAD
+doctype html
+html(lang="en")
+
+	link(rel="stylesheet", href="http://cs.iupui.edu/~lrthayer/hiveUserPortalResources/loginCSS.css")
+	link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+	link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
+	script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+
+
+	body
+		div.container
+			img(id='icon' src='http://cs.iupui.edu/~lrthayer/hiveUserPortalResources/hiveLoginLogo.PNG')
+			form.form-horizontal(method='post', action='/login')
+				div(id='borderimg1').form-group
+					label.col-sm-2.control-label(for="name") Username
+					div.col-sm-10
+						input#name.form-control(type="text", name="name", placeholder="")
+				div(id='borderimg2').form-group
+					label.col-sm-2.control-label(for="password") Password
+					div.col-sm-10
+						input#password.form-control(type="password", name="password", placeholder="")
+				div(id='loginButton').form-group
+					div.col-sm-offset-2.col-sm-10
+						button.btn.btn-default(type="submit") Submit
+
+
+
+		blockquote #{message}
+=======
 doctype html
 html(lang="en")
     head
@@ -31,3 +61,4 @@ html(lang="en")
         blockquote #{message}
         p = "Here is the orignial image"
         img(src='http://cs.iupui.edu/~lrthayer/hiveUserPortalResources/hiveLoginLogo.PNG')
+>>>>>>> origin/ViewExperiment
