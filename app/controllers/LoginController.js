@@ -11,9 +11,7 @@ blueprint.controller (LoginController);
 
 LoginController.prototype.login = function () {
     return function (req, res) {
-
         return res.redirect('/userdashboard');
-
     };
 };
 

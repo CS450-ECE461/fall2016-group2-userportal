@@ -3,12 +3,12 @@
  */
 var passport      = require ('passport')
     , LocalStrategy = require ('passport-local').Strategy
+
     ;
 
 module.exports = initPassport;
 
 function initPassport (app) {
-
     var opts = {name: 'username',password:'password', session: true};
     passport.use (new LocalStrategy (opts, authorize));
 
@@ -21,11 +21,13 @@ function initPassport (app) {
         };
 
 
-
+        /*
         request
-            .post('35.163.81.202:5000/login')
+            .post('localhost:5000/mock')
             .send(userData)
             .end(function (err, resp) {
+                Console.log('hi there');
+
                 if(err) {
                     if (err.status == '400') {
                         return done (null,false,{message: "Password is incorrect."});
@@ -34,18 +36,16 @@ function initPassport (app) {
                     return done (err,false);
 
                 }else {
+
                     token = resp.body.token;
                 }
-                return done (null,token);
 
+                return done (null,token);
             });
 
 
 
         return done(null,false,{message:"bad password"});
-
-
-
-
+        */
     }
 }
