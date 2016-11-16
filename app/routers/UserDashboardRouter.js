@@ -8,8 +8,8 @@ function isLoggedIn (req,res,next) {
 
 module.exports = exports = {
     '/userdashboard' : {
-        use: isLoggedIn,
         get  : { view   : 'userdashboard.pug'},
-        post : { action : 'UserDashboardController@logout'}
+        post : { action : 'UserDashboardController@logout'},
+        //use : isLoggedIn
     }
 };
