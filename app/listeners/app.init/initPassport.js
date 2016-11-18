@@ -8,7 +8,6 @@ function initPassport (app) {
     var opts = {name: 'username',password:'password', session: true};
 
     function authorize (username, password, done) {
-        console.log ('test');
         var token;
 
         var userData = {
@@ -23,8 +22,6 @@ function initPassport (app) {
                 if(err) {
                     if (err.status == '400') {
                         return done (null,false,{message: "Password is incorrect."});
-                    } else if (err.status == '401') {
-                        return done (null,false,{message: "User is not an admin."});
                     }
 
                     return done (err,false);
@@ -32,6 +29,7 @@ function initPassport (app) {
                 } else {
                     token = resp.body.token;
                 }
+
                 return done (null,token);
             });
     }
