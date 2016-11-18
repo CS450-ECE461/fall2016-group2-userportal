@@ -1,13 +1,11 @@
 var passport      = require ('passport')
-    , LocalStrategy = require ('passport-local').Strategy
-    ;
-
-module.exports = initPassport;
+  , LocalStrategy = require ('passport-local').Strategy
+  , request       = require ('superagent')
+  ;
 
 function initPassport (app) {
 
     var opts = {name: 'username',password:'password', session: true};
-    passport.use (new LocalStrategy (opts, authorize));
 
     function authorize (username, password, done) {
         var token;
@@ -17,25 +15,26 @@ function initPassport (app) {
             "password" : password
         };
 
-
         request
-            .post('localhost:5000/mock')
+            .post('localhost:5002/mock')
             .send(userData)
             .end(function (err, resp) {
                 if(err) {
                     if (err.status == '400') {
                         return done (null,false,{message: "Password is incorrect."});
-                    } else if (err.status == '401') {
-                        return done (null,false,{message: "User is not an admin."});
                     }
 
                     return done (err,false);
 
-                }else {
+                } else {
                     token = resp.body.token;
                 }
-                return done (null,token);
 
+                return done (null,token);
             });
     }
+
+    passport.use (new LocalStrategy (opts, authorize));
 }
+
+module.exports = exports = initPassport;

@@ -9,7 +9,6 @@ function UserDashboardController () {
 blueprint.controller (UserDashboardController);
 
 UserDashboardController.prototype.logout = function () {
-
     return function (req, res) {
         req.logout ();
         return res.redirect ('/login');
