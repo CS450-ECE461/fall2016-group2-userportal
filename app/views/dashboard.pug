@@ -11,8 +11,29 @@ html(lang="en")
         div.container
             h1 You have now logged in!
 
-            form.form-horizontal(method='post', action='/dashboard')
+            form.form-horizontal(method='post', action='/dashboard/home')
+                div.col-sm-offset-2.col-sm-10
+                    button.btn.btn-default(type='submit') Home
+
+
+            form.form-horizontal(method='post', action='/dashboard/notificationsTab')
+                div.col-sm-offset-2.col-sm-10
+                    button.btn.btn-default(type='submit') Notifications
+
+
+            form.form-horizontal(method='post', action='/dashboard/composeTab')
+                div.col-sm-offset-2.col-sm-10
+                    button.btn.btn-default(type='submit') Compose
+
+
+            form.form-horizontal(method='post', action='/dashboard/contactsTab')
+                div.col-sm-offset-2.col-sm-10
+                    button.btn.btn-default(type='submit') Contacts
+
+
+            form.form-horizontal(method='post', action='/dashboard/logout')
                 div.col-sm-offset-2.col-sm-10
                     button.btn.btn-default(type='submit') Logout
+
 
         blockquote #{message}
