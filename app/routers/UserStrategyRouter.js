@@ -2,9 +2,9 @@ var passport = require ('passport')
 
 
 module.exports = exports = {
-    '/userdashboard' : {
-        get  : { view   : 'userdashboard.pug'},
-        post : { action : 'UserDashboardController@logout'},
+    '/dashboard' : {
+        get  : { view   : 'dashboard.pug'},
+        post : { action : 'UserStrategyController@logout'},
         //use : isLoggedIn
     }
 };
