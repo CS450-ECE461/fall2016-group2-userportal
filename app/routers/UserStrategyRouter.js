@@ -20,21 +20,21 @@ module.exports = exports = {
     },
 
 
-    '/dashboard/notificationsTab' : {
+    '/dashboard/notifications' : {
         get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@notificationsTab' }
+        post : { action : 'UserStrategyController@notifications' }
     },
 
 
-    '/dashboard/composeTab' : {
+    '/dashboard/compose' : {
         get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@composeTab' }
+        post : { action : 'UserStrategyController@compose' }
     },
 
 
-    '/dashboard/contactsTab' : {
+    '/dashboard/contacts' : {
         get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@contactsTab' }
+        post : { action : 'UserStrategyController@contacts' }
     }
 
 };

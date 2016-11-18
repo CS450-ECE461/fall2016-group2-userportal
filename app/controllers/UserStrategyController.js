@@ -43,7 +43,7 @@ UserStrategyController.prototype.home = function () {
 ///
 /// This supplies the user with the notification view
 ///
-UserStrategyController.prototype.notificationsTab = function () {
+UserStrategyController.prototype.notifications = function () {
     return function (req, res) {
         return res.render ('dashboard.pug', {message: 'Notifications view'});
     };
@@ -53,7 +53,7 @@ UserStrategyController.prototype.notificationsTab = function () {
 ///
 /// This supplies the user with the message generation view (compose)
 ///
-UserStrategyController.prototype.composeTab = function () {
+UserStrategyController.prototype.compose = function () {
     return function (req, res) {
         return res.render ('dashboard.pug', {message: 'Compose view'});
     };
@@ -63,7 +63,7 @@ UserStrategyController.prototype.composeTab = function () {
 ///
 /// This supplies the user with the contacts view
 ///
-UserStrategyController.prototype.contactsTab = function () {
+UserStrategyController.prototype.contacts = function () {
     return function (req, res) {
         return res.render ('dashboard.pug', {message: 'Contacts view'});
     };
