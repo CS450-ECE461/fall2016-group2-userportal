@@ -7,22 +7,18 @@ html(lang="en")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
 
 
-
-    body(style='width:100%;')
-
-        div.container(style='width:100%;')
-
+    body
+        div.container
             form.form-horizontal(method='post', action='/login')
-                div(id='borderimg1' style='float:auto').form-group
-                    label.col-sm-2.control-label(for="name") Email
+                img.icon(src="http://cs.iupui.edu/~lrthayer/hiveUserPortalResources/hiveLoginLogo.PNG")
+                div(id='borderimg1').form-group
+                    label.col-sm-2.control-label(for="name") Username
                     div.col-sm-10
                         input#name.form-control(type="text", name="username", placeholder="")
-
-                div(id='borderimg2' style='float:auto').form-group
+                div(id='borderimg2').form-group
                     label.col-sm-2.control-label(for="password") Password
                     div.col-sm-10
                         input#password.form-control(type="password", name="password", placeholder="")
-
-                div(id='loginButton' style='float:auto').form-group
+                div(id='loginButton').form-group
                     div.col-sm-offset-2.col-sm-10
                         button.btn.btn-default(type="submit") Submit
