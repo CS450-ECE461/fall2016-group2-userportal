@@ -7,33 +7,48 @@ html(lang="en")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
 
-    body
-        div.container
-            h1 You have now logged in!
+    body(style='width:100%;height:100%;')
 
-            form.form-horizontal(method='post', action='/dashboard/home')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Home
+        div.container(style='width:100%;height:100%;')
+
+            div(id='topHalf' style='float:bottom;height:20%;')
+                div(id='mainTitle' style='text-align:center;border-style:solid;')
+                    h1 You have now logged in!
+
+            div(id='bottomHalf' style='float:bottom;height:80%;')
+
+                div(id='buttonBar' style='float:left;width:20%;border-style:solid;')
+                    form.form-horizontal(method='post', action='/dashboard/home')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Home
+
+                    form.form-horizontal(method='post', action='/dashboard/notifications')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Notifications
+
+                    form.form-horizontal(method='post', action='/dashboard/compose')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Compose
+
+                    form.form-horizontal(method='post', action='/dashboard/contacts')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Contacts
+
+                    form.form-horizontal(method='post', action='/dashboard/logout')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Logout
 
 
-            form.form-horizontal(method='post', action='/dashboard/notifications')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Notifications
+
+                div(id='mainDiv' style='border-style:solid;float:right;width:80%')
+                    p #{message}
+                    //Use !{item.body} instead of #
+
+                        section#news
+                            - each item in news
+                              article(class="news")
+                                header
+                                  h2 #{item.title}
+                                p #{item.body}
 
 
-            form.form-horizontal(method='post', action='/dashboard/compose')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Compose
-
-
-            form.form-horizontal(method='post', action='/dashboard/contacts')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Contacts
-
-
-            form.form-horizontal(method='post', action='/dashboard/logout')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Logout
-
-
-        blockquote #{message}
