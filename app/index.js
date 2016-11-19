@@ -12,4 +12,4 @@ blueprint.Application (__dirname, function (err, app) {
 
     winston.log ('info', 'application started...');
   });
-});j
+});
