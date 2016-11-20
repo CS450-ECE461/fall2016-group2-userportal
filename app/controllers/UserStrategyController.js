@@ -64,14 +64,15 @@ UserStrategyController.prototype.compose = function () {
 ///
 UserStrategyController.prototype.contacts = function () {
     return function (req, res) {
+        var contact = ['Name','Company','Business Title'];
+        var contacts = [];
+        contacts.push(contact);
 
-        var x = ['a','b','c'];
 
-        res.render('dashboard.pug', { 'mainObj': 'contacts', 'list': x });
+
+        res.render('dashboard.pug', { 'mainObj': 'contacts', 'contacts': contacts });
     };
 };
-
-
 
 
 module.exports = exports = UserStrategyController;

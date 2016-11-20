@@ -44,6 +44,20 @@ html(lang="en")
                 div(id='mainDiv' style='border-style:solid;float:right;width:80%')
                     //p #{list}
                     -if(mainObj === 'contacts')
-                        if(list)
-                            each val in list
-                                p= val
+                        table(style='width:100%;')
+                        if(contacts)
+                            console.log(contacts)
+                            each contact in contacts
+                                tr(style='width:100%;border:1px solid black;padding:2px;')
+                                    each attr in contact
+                                        th(style='width:33%;border:1px solid black;padding:2px;')= attr
+
+
+
+
+
+
+
+
+
+
