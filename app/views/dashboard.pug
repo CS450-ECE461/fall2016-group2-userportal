@@ -41,16 +41,63 @@ html(lang="en")
 
 
 
-                div(id='mainDiv' style='border-style:solid;float:right;width:80%')
-                    //p #{list}
-                    -if(mainObj === 'contacts')
+                div(id='mainDiv' style='border-style:solid;float:right;width:80%;height80%;')
+                    //brings up contacts pop up
+                    if(mainObj === 'contacts')
                         table(style='width:100%;')
-                        if(contacts)
-                            console.log(contacts)
-                            each contact in contacts
-                                tr(style='width:100%;border:1px solid black;padding:2px;')
-                                    each attr in contact
-                                        th(style='width:33%;border:1px solid black;padding:2px;')= attr
+                            thead
+                            tbody
+                                if(contacts)
+                                    each contact in contacts
+                                        tr(style='width:100%;border:1px solid black;padding:2px;')
+                                        each attr in contact
+                                            th(style='width:33%;border:1px solid black;padding:2px;')= attr
+
+                    //notifications tab
+                    if(mainObj === 'notifications')
+                        table(style='width:100%;')
+                            thead
+                            tbody
+                                if(messages)
+                                    each message in messages
+                                        tr(style='width:100%;border:1px solid black;padding:2px;')
+                                        each attr in message
+                                            th(style='width:25%;border:1px solid black;padding:2px;')= attr
+
+                    //brings up compose pop up
+                    if(composeMessage === 'true')
+                        div.container(name='composeView' style='width:100%;height:100%;')
+
+                            div.container(name='composeClose' style='width:30%;height:5%;float:right')
+                                form.form-horizontal(method='post', action='/dashboard/compose/close')
+                                    div.col-sm-offset-2.col-sm-10
+                                        button.btn.btn-default(type='submit') Close
+
+                            div.container(name='composeHeading' style='width:100%;height:10%;')
+                                p Title
+                                textarea(style='width:100;height:100%;')
+
+                            div.container(name='composeContacts' style='width:100%;height:10%;')
+                                form.form-horizontal(method='post', action='/dashboard/contacts')
+                                    div.col-sm-offset-2.col-sm-10
+                                        button.btn.btn-default(type='submit') Contacts
+
+                            div.container(name='composeMessage' style='width:100%;height:70%;')
+                                p Message
+                                textarea(style='width:100;height:100%;')
+
+                            div.container(name='composeSend' style='width:20%;height:5%;float:right')
+                                form.form-horizontal(method='post', action='/dashboard/compose/send')
+                                    div.col-sm-offset-2.col-sm-10
+                                        button.btn.btn-default(type='submit') Send
+
+
+
+
+
+
+
+
 
 
 
