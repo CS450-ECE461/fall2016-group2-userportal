@@ -1,6 +1,5 @@
-var blueprint = require ('@onehilltech/blueprint')
-    , util      = require ('util')
-    ;
+var blueprint = require ('@onehilltech/blueprint'),
+    util      = require ('util');
 
 function UserStrategyController () {
     blueprint.BaseController.call (this);
@@ -35,7 +34,7 @@ UserStrategyController.prototype.logout = function () {
 ///
 UserStrategyController.prototype.home = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', {message: 'Main view'});
+        return res.render ('dashboard.pug', { 'list': 'Main view'});
     };
 };
 
@@ -45,7 +44,7 @@ UserStrategyController.prototype.home = function () {
 ///
 UserStrategyController.prototype.notifications = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', {message: 'Notifications view'});
+        return res.render ('dashboard.pug', { 'list': 'Notifications view'});
     };
 };
 
@@ -55,7 +54,7 @@ UserStrategyController.prototype.notifications = function () {
 ///
 UserStrategyController.prototype.compose = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', {message: 'Compose view'});
+        return res.render ('dashboard.pug', { 'list': 'Compose view'});
     };
 };
 
@@ -65,7 +64,10 @@ UserStrategyController.prototype.compose = function () {
 ///
 UserStrategyController.prototype.contacts = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', {message: 'Contacts view'});
+
+        var x = ['a','b','c'];
+
+        res.render('dashboard.pug', { 'mainObj': 'contacts', 'list': x });
     };
 };
 
