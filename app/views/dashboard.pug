@@ -7,88 +7,103 @@ html(lang="en")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
 
-    body
-        div.container(name='heading' style='width:100%;')
-            h1 You have now logged in!
+    body(style='width:100%;height:100%;')
 
-        div.container(name='sidebar' style='float:left;width:20%;')
-            form.form-horizontal(method='post', action='/dashboard/home')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Home
+        div.container(style='width:100%;height:100%;')
+
+            div(id='topHalf' style='float:top;height:20%;')
+                div(id='mainTitle' style='text-align:center;border-style:solid;')
+                    h1 You have now logged in!
+
+            div(id='bottomHalf' style='float:bottom;height:80%;')
+
+                div(id='buttonBar' style='float:left;width:20%;border-style:solid;')
+                    form.form-horizontal(method='post', action='/dashboard/home')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Home
+
+                    form.form-horizontal(method='post', action='/dashboard/notifications')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Notifications
+
+                    form.form-horizontal(method='post', action='/dashboard/compose')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Compose
+
+                    form.form-horizontal(method='post', action='/dashboard/contacts')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Contacts
+
+                    form.form-horizontal(method='post', action='/dashboard/logout')
+                        div.col-sm-offset-2.col-sm-10
+                            button.btn.btn-default(type='submit') Logout
 
 
-            form.form-horizontal(method='post', action='/dashboard/notifications')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Notifications
+
+                div(id='mainDiv' style='border-style:solid;float:right;width:80%;height80%;')
+                    //brings up contacts pop up
+                    if(mainObj === 'contacts')
+                        table(style='width:100%;')
+                            thead
+                            tbody
+                                if(contacts)
+                                    each contact in contacts
+                                        tr(style='width:100%;border:1px solid black;padding:2px;')
+                                        each attr in contact
+                                            th(style='width:33%;border:1px solid black;padding:2px;')= attr
+
+                    //notifications tab
+                    if(mainObj === 'notifications')
+                        table(style='width:100%;')
+                            thead
+                            tbody
+                                if(messages)
+                                    each message in messages
+                                        tr(style='width:100%;border:1px solid black;padding:2px;')
+                                        each attr in message
+                                            th(style='width:25%;border:1px solid black;padding:2px;')= attr
+
+                    //brings up compose pop up
+                    if(composeMessage === 'true')
+                        div.container(name='composeView' style='width:100%;height:100%;')
+
+                            div.container(name='composeClose' style='width:30%;height:5%;float:right')
+                                form.form-horizontal(method='post', action='/dashboard/compose/close')
+                                    div.col-sm-offset-2.col-sm-10
+                                        button.btn.btn-default(type='submit') Close
+
+                            div.container(name='composeHeading' style='width:100%;height:10%;')
+                                p Title
+                                textarea(style='width:100;height:100%;')
+
+                            div.container(name='composeContacts' style='width:100%;height:10%;')
+                                form.form-horizontal(method='post', action='/dashboard/contacts')
+                                    div.col-sm-offset-2.col-sm-10
+                                        button.btn.btn-default(type='submit') Contacts
+
+                            div.container(name='composeMessage' style='width:100%;height:70%;')
+                                p Message
+                                textarea(style='width:100;height:100%;')
+
+                            div.container(name='composeSend' style='width:20%;height:5%;float:right')
+                                form.form-horizontal(method='post', action='/dashboard/compose/send')
+                                    div.col-sm-offset-2.col-sm-10
+                                        button.btn.btn-default(type='submit') Send
 
 
-            form.form-horizontal(method='post', action='/dashboard/compose')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Compose
 
 
-            form.form-horizontal(method='post', action='/dashboard/contacts')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Contacts
 
 
-            form.form-horizontal(method='post', action='/dashboard/logout')
-                div.col-sm-offset-2.col-sm-10
-                    button.btn.btn-default(type='submit') Logout
 
 
-        blockquote #{message}
 
-        div.container(name='notificationsView' style='float:right;width:80%;')
-            table(style='width:100%;')
-                div.container(style='width:100%')
-                    table(style='width:100%;border:1px solid black;padding:2px;')
-                        tr(style='width:100%;border:1px solid black;padding:2px;')
-                            th(style='width:20%;border:1px solid black;padding:2px;') Sender
-                            th(style='width:20%;border:1px solid black;padding:2px;') Title
-                            th(style='width:50%;border:1px solid black;padding:2px;') Message
-                            th(style='width:10%;border:1px solid black;padding:2px;') Time Left
-                    table(style='width:100%;border:1px solid black;padding:2px;')
-                        tr(style='width:100%;border:1px solid black;padding:2px;')
-                            td(style='width:20%;border:1px solid black;padding:2px;') Rob Jansen
-                            td(style='width:20%;border:1px solid black;padding:2px;') Hi Tim
-                            td(style='width:50%;border:1px solid black;padding:2px;') Hello, Tim, where are you?
-                            td(style='width:10%;border:1px solid black;padding:2px;') 5:00
-                    table(style='width:100%;border:1px solid black;padding:2px;')
-                        tr(style='width:100%;border:1px solid black;padding:2px;')
-                            td(style='width:20%;border:1px solid black;padding:2px;') Lincoln
-                            td(style='width:20%;border:1px solid black;padding:2px;') Code Complete
-                            td(style='width:50%;border:1px solid black;padding:2px;') I finished with this week's sprint.
-                            td(style='width:10%;border:1px solid black;padding:2px;') 4:28
 
-        p
-        p
 
-        div.container(name='contactsView' style='float:right;width:80%;')
-            table(style='width:100%;')
-                div.container(style='width:100%')
-                    table(style='width:100%;border:1px solid black;padding:2px;')
-                        tr(style='width:100%;border:1px solid black;padding:2px;')
-                            th(style='width:20%;border:1px solid black;padding:2px;') Name
-                            th(style='width:30%;border:1px solid black;padding:2px;') Company
-                            th(style='width:50%;border:1px solid black;padding:2px;') Business Title
-                    table(style='width:100%;border:1px solid black;padding:2px;')
-                        tr(style='width:100%;border:1px solid black;padding:2px;')
-                            td(style='width:20%;border:1px solid black;padding:2px;') Bill Gates
-                            td(style='width:30%;border:1px solid black;padding:2px;') Microsoft
-                            td(style='width:50%;border:1px solid black;padding:2px;') President
-                    table(style='width:100%;border:1px solid black;padding:2px;')
-                        tr(style='width:100%;border:1px solid black;padding:2px;')
-                            td(style='width:20%;border:1px solid black;padding:2px;') Jim Weatherall
-                            td(style='width:30%;border:1px solid black;padding:2px;') IBM
-                            td(style='width:50%;border:1px solid black;padding:2px;') VP of Sales
 
-        div.container(name='composeView' style='width:40%;height:40%;float:right;float:botton;')
-            div.container(name='composeHeading' style='width:100%;height:20%;')
-                h1 New Message
-            div.container(name='composeContacts' style='width:100%;height:20%;')
-                button My Contacts
-            div.container(name='composeMessage' style='width:100%;height:50%;')
-                textarea(style='width:100;height:100%;')
-            div.container(name='composeSend' style='width:30%;height:10%;float:right;float:bottom;')
-                button Send
+
+
+
+
+
+
