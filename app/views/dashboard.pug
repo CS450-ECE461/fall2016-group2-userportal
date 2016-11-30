@@ -11,13 +11,13 @@ html(lang="en")
 
         div.container(style='width:100%;height:100%;')
 
-            div(id='topHalf' style='float:top;height:20%;')
+            div(id='topHalf' style='float:top;width:100%;height:20%;')
                 div(id='mainTitle' style='text-align:center;border-style:solid;')
                     h1 You have now logged in!
 
-            div(id='bottomHalf' style='float:bottom;height:80%;')
+            div(id='bottomHalf' style='position:absolute;width:100%;height:80%;left:0%;top:20%;')
 
-                div(id='buttonBar' style='float:left;width:20%;border-style:solid;')
+                div(id='buttonBar' style='position:absolute;width:20%;height:100%;left:0%;top:0%;border-style:solid;')
                     form.form-horizontal(method='post', action='/dashboard/home')
                         div.col-sm-offset-2.col-sm-10
                             button.btn.btn-default(type='submit') Home
@@ -40,7 +40,7 @@ html(lang="en")
 
 
 
-                div(id='mainDiv' style='border-style:solid;float:right;width:80%;height80%;')
+                div(id='mainDiv' style='position:absolute;width:80%;height100%;left:20%;top:0%;border-style:solid;')
                     //brings up contacts pop up
                     if(mainObj === 'contacts')
                         table(style='width:100%;')
@@ -63,31 +63,33 @@ html(lang="en")
                                         each attr in message
                                             th(style='width:25%;border:1px solid black;padding:2px;')= attr
 
-                    //brings up compose pop up
-                    if(composeMessage === 'true')
-                        div.container(name='composeView' style='width:100%;height:100%;')
+            //brings up compose pop up
+            if(composeMessage === 'true')
+                div.container(name='composeView' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-color:#ffffff;')
 
-                            div.container(name='composeClose' style='width:30%;height:5%;float:right')
-                                form.form-horizontal(method='post', action='/dashboard/compose/close')
-                                    div.col-sm-offset-2.col-sm-10
-                                        button.btn.btn-default(type='submit') Close
+                    div.container(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:0%;')
+                        div.container(name='composeWindowTitle' style='position:absolute;width:95%;height:100%;left:0%;top:0%;')
+                            span New Message
+                        form.form-horizontal(name='composeClose', method='post', action='/dashboard/compose/close')
+                            button.btn.btn-default(type='submit' style='position:absolute;width:5%;height:100%;left:95%;top:0%;') X
 
-                            div.container(name='composeHeading' style='width:100%;height:10%;')
-                                p Title
-                                textarea(style='width:100;height:100%;')
+                    div.container(name='composeTitle' style='position:absolute;width:100%;height:100%;left:0%;top:5%;')
+                        span Title
 
-                            div.container(name='composeContacts' style='width:100%;height:10%;')
-                                form.form-horizontal(method='post', action='/dashboard/contacts')
-                                    div.col-sm-offset-2.col-sm-10
-                                        button.btn.btn-default(type='submit') Contacts
+                    div.container(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:10%;')
+                        textarea(style='position:absolute;width:96%;height:100%;left:2%;top:0%;')
 
-                            div.container(name='composeMessage' style='width:100%;height:70%;')
-                                p Message
-                                textarea(style='width:100;height:100%;')
+                    div.container(name='composeContacts' style='position:absolute;width:100%;height:5%;left:0%;top:15%;')
+                        form.form-horizontal(name='composeContactsForm', method='post', action='/dashboard/contacts')
+                            div.container(name='composeContactsButton' style='position:absolute;width:20%;height:100%;left:80%;top:0%;')
+                                button.btn.btn-default(type='submit' style='position:absolute;width:100%;height:100%;left:0%;top:0%;') Select Recipient(s)
 
-                            div.container(name='composeSend' style='width:20%;height:5%;float:right')
-                                form.form-horizontal(method='post', action='/dashboard/compose/send')
-                                    div.col-sm-offset-2.col-sm-10
-                                        button.btn.btn-default(type='submit') Send
+                    div.container(name='composeMessage' style='position:absolute;width:100%;height:75%;left:0%;top:20%;')
+                        div.container(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:0%;')
+                            span Message
+                        textarea(style='position:absolute;width:96%;height:95%;left:2%;top:5%;')
 
+                    div.container(name='composeSend' style='position:absolute;width:100%;height:5%;left:0%;top:95%;')
+                        form.form-horizontal(method='post', action='/dashboard/compose/send')
+                            button.btn.btn-default(type='submit' style='position:absolute;width:20%;height:100%;left:80%;top:0%;') Send
 
