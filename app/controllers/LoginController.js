@@ -1,5 +1,6 @@
 var blueprint = require ('@onehilltech/blueprint')
-  ;
+    request =  require ('superagent')
+;
 
 function LoginController () {
     blueprint.BaseController.call (this);
