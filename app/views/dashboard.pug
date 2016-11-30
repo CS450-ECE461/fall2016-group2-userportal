@@ -41,8 +41,31 @@ html(lang="en")
 
 
                 div(id='mainDiv' style='position:absolute;width:80%;height100%;left:20%;top:0%;border-style:solid;')
-                    //brings up contacts pop up
-                    if(mainObj === 'contacts')
+                    //switches to notifications tab
+                    if(mainObj === 'notifications')
+                        table(style='width:100%;h')
+                            thead
+                            tbody
+                                if(messages)
+                                    each message in messages
+                                        tr(style='width:100%;border:1px solid black;padding:2px;')
+                                        each attr in message
+                                            th(style='width:25%;border:1px solid black;padding:2px;')= attr
+
+
+                    //add other tabs (e.g., calendar) at this level, under mainDiv
+
+            //brings up notifications pop up
+            if(contactsList === 'true')
+                div.container(name='contactsView' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-color:#ffffff;')
+
+                    div.container(name='contactsHeading' style='position:absolute;width:100%;height:5%;left:0%;top:0%;')
+                        div.container(name='contactsPopUpTitle' style='position:absolute;width:95%;height:100%;left:0%;top:0%;')
+                            span My Contacts
+                        form.form-horizontal(name='contactsClose', method='post', action='/dashboard/contacts/close')
+                            button.btn.btn-default(type='submit' style='position:absolute;width:5%;height:100%;left:95%;top:0%;') X
+
+                    div.container(name='tableDiv' style='position:absolute;width:100%;height:90%;left:0%;top:5%;')
                         table(style='width:100%;')
                             thead
                             tbody
@@ -52,23 +75,17 @@ html(lang="en")
                                         each attr in contact
                                             th(style='width:33%;border:1px solid black;padding:2px;')= attr
 
-                    //notifications tab
-                    if(mainObj === 'notifications')
-                        table(style='width:100%;')
-                            thead
-                            tbody
-                                if(messages)
-                                    each message in messages
-                                        tr(style='width:100%;border:1px solid black;padding:2px;')
-                                        each attr in message
-                                            th(style='width:25%;border:1px solid black;padding:2px;')= attr
+                    div.container(name='contactsSelect' style='position:absolute;width:100%;height:5%;left:0%;top:95%;')
+                        form.form-horizontal(name='contactsSelectForm', method='post', action='/dashboard/contacts')
+                            div.container(name='contactsSelectButton' style='position:absolute;width:20%;height:100%;left:80%;top:0%;')
+                                button.btn.btn-default(type='submit' style='position:absolute;width:100%;height:100%;left:0%;top:0%;') Choose Recipient(s)
 
             //brings up compose pop up
             if(composeMessage === 'true')
                 div.container(name='composeView' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-color:#ffffff;')
 
                     div.container(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:0%;')
-                        div.container(name='composeWindowTitle' style='position:absolute;width:95%;height:100%;left:0%;top:0%;')
+                        div.container(name='composePopUpTitle' style='position:absolute;width:95%;height:100%;left:0%;top:0%;')
                             span New Message
                         form.form-horizontal(name='composeClose', method='post', action='/dashboard/compose/close')
                             button.btn.btn-default(type='submit' style='position:absolute;width:5%;height:100%;left:95%;top:0%;') X

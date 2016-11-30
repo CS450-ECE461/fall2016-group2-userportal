@@ -51,7 +51,7 @@ UserStrategyController.prototype.notifications = function () {
         messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
         messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
 
-        res.render('dashboard.pug', { 'mainObj': 'notifications', 'messages': messages });
+        return res.render('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': messages });
     };
 };
 
@@ -61,13 +61,13 @@ UserStrategyController.prototype.notifications = function () {
 ///
 UserStrategyController.prototype.compose = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', { 'composeMessage': 'true'});
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'true', 'contactsList': 'false'});
     };
 };
 
 UserStrategyController.prototype.composeClose = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', { 'composeMessage': 'false'});
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false'});
     };
 };
 
@@ -84,7 +84,13 @@ UserStrategyController.prototype.contacts = function () {
         contacts.push(['Rob','Google','Software Engineer']);
         contacts.push(['Tim','Amazon','Software Analyst']);
 
-        res.render('dashboard.pug', { 'mainObj': 'contacts', 'contacts': contacts });
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'true', 'contacts': contacts });
+    };
+};
+
+UserStrategyController.prototype.contactsClose = function () {
+    return function (req, res) {
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false'});
     };
 };
 

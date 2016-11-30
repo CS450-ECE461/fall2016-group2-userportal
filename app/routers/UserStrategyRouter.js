@@ -41,6 +41,11 @@ module.exports = exports = {
     '/dashboard/compose/close' : {
         get  : { view   : 'dashboard.pug' },
         post : { action : 'UserStrategyController@composeClose' }
+    },
+
+    '/dashboard/contacts/close' : {
+        get  : { view   : 'dashboard.pug' },
+        post : { action : 'UserStrategyController@contactsClose'}
     }
 
 };
