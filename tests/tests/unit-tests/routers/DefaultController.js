@@ -10,18 +10,17 @@ var blueprint = require ('@onehilltech/blueprint')
 var appPath = require ('../../../fixtures/appPath');
 
 
-describe ('LoginRouter', function () {
+describe ('DefaultRouter', function () {
 
     before (function (done) {
         blueprint.testing.createApplicationAndStart (appPath, done)
     });
 
     describe ('/login', function () {
-        describe ('GET', function () {
+        describe ('POST', function () {
             it ('should get all messages in the database', function (done) {
-                // Use supertest to make a request and check response.
                 request (blueprint.app.server.app)
-                    .get ('/dashboard')
+                    .get ('/login')
                     .expect (200, done);
             });
         });
