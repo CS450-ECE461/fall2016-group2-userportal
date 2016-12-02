@@ -71,6 +71,15 @@ UserStrategyController.prototype.composeClose = function () {
     };
 };
 
+UserStrategyController.prototype.composeSend = function () {
+    return function (req, res) {
+
+
+
+        return res.render ('dashboard.pug', { 'composeMessage': 'false'});
+    };
+};
+
 
 ///
 /// This supplies the user with the contacts view
