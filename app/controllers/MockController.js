@@ -14,4 +14,12 @@ MockController.prototype.mock = function () {
 };
 
 
+MockController.prototype.messageTest = function () {
+    return function (req, res) {
+        res.status (200).json ({ msgResp: 'Message Sent!' });
+    };
+};
+
+
+
 module.exports = exports = MockController;

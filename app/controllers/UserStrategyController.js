@@ -74,9 +74,40 @@ UserStrategyController.prototype.composeClose = function () {
 UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
-        var title = "";
-        var contacts = "";
-        var message = "";
+        messageData = [];
+
+        var title = "Test Title";
+        var contacts = [];
+        contacts.push("test@iupui.edu");
+        var message = "Hi there how is your day, what are you up to?";
+        var dt = Date.now();
+
+        messageData.push(title);
+        messageData.push(contacts);
+        messageData.push(message);
+        messageData.push(dt);
+
+        var msgResponse;
+
+        //'35.163.81.202:5000/v1/messages'
+        request
+            .post('localhost:5002/mock/messageTest')
+            .send(messageData)
+            .end(function (err, resp) {
+                if(err) {
+                    if (err.status == '400') {
+                        return done (null,false,{message: "Error Sending Message"});
+                    }
+
+                    return done (err,false);
+
+                } else {
+                    msgResponse = resp.body.msgResp;
+                    console.log(msgResponse);
+                }
+
+            });
+
 
         return res.render ('dashboard.pug', { 'composeMessage': 'false'});
     };
