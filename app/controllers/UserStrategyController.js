@@ -1,5 +1,6 @@
 var blueprint = require ('@onehilltech/blueprint'),
-    util      = require ('util');
+    util      = require ('util'),
+    request   = require('superagent');
 
 function UserStrategyController () {
     blueprint.BaseController.call (this);
@@ -105,9 +106,7 @@ UserStrategyController.prototype.composeSend = function () {
                     msgResponse = resp.body.msgResp;
                     console.log(msgResponse);
                 }
-
             });
-
 
         return res.render ('dashboard.pug', { 'composeMessage': 'false'});
     };
