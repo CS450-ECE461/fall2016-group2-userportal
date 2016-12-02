@@ -18,10 +18,8 @@ describe ('LoginController', function () {
 
     describe ('/login', function () {
         describe ('GET', function () {
-            it ('should get all messages in the database', function (done) {
 
 
-            });
         });
     });
 });
