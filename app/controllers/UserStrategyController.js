@@ -48,8 +48,8 @@ UserStrategyController.prototype.notifications = function () {
         var messages = [];
         messages.push(message);
 
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+        messages.push(['rob@iupui.edu','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['bob@iupui.edu','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
 
         res.render('dashboard.pug', { 'mainObj': 'notifications', 'messages': messages });
     };
@@ -86,12 +86,12 @@ UserStrategyController.prototype.composeSend = function () {
 ///
 UserStrategyController.prototype.contacts = function () {
     return function (req, res) {
-        var contact = ['Name','Company','Business Title'];
+        var contact = ['Name', 'Contact Address', 'Company', 'Business Title'];
         var contacts = [];
         contacts.push(contact);
 
-        contacts.push(['Rob','Google','Software Engineer']);
-        contacts.push(['Tim','Amazon','Software Analyst']);
+        contacts.push(['Rob', 'rob@iupui.edu', 'Google', 'Software Engineer']);
+        contacts.push(['Tim', 'tim@iupui.edu', 'Amazon', 'Software Analyst']);
 
         res.render('dashboard.pug', { 'mainObj': 'contacts', 'contacts': contacts });
     };
