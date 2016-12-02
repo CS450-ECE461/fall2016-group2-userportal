@@ -74,7 +74,9 @@ UserStrategyController.prototype.composeClose = function () {
 UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
-
+        var title = "";
+        var contacts = "";
+        var message = "";
 
         return res.render ('dashboard.pug', { 'composeMessage': 'false'});
     };
