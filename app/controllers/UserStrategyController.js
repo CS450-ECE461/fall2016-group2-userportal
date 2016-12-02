@@ -61,13 +61,27 @@ UserStrategyController.prototype.notifications = function () {
 ///
 UserStrategyController.prototype.compose = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'true', 'contactsList': 'false'});
+        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'true', 'contactsList': 'false', 'messages': messages});
     };
 };
 
 UserStrategyController.prototype.composeClose = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false'});
+        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': messages});
     };
 };
 
@@ -84,13 +98,27 @@ UserStrategyController.prototype.contacts = function () {
         contacts.push(['Rob','Google','Software Engineer']);
         contacts.push(['Tim','Amazon','Software Analyst']);
 
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'true', 'contacts': contacts });
+        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'true', 'messages': messages, 'contacts': contacts });
     };
 };
 
 UserStrategyController.prototype.contactsClose = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false'});
+        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': messages});
     };
 };
 
