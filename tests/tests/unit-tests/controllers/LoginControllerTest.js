@@ -21,18 +21,15 @@ describe ('LoginController', function () {
                .post('/login')
                .send()
                .end(function(err,res){
-                  if (!err) {
-                      if(res.header['location'] === '/login'){
-                          return done();
-                      }
-                      else{
-                          return done(err);
-                      }
-                  }
-                  else{
-                      return done (err);
+                  if (err) {
+                      return done(err);
                   }
 
+                   if(res.header['location'] == '/login'){
+                       return done();
+                   }
+
+                   return done(new Error('invalid location'));
                });
         });
     });
@@ -46,20 +43,15 @@ describe ('LoginController', function () {
                 .post('/login')
                 .send()
                 .end(function(err,res){
-                    if (!err) {
-                        if(res.header['location'] === '/dashboad'){
-                            return done();
-                        }
-                        else{
-                            return done(err);
-                        }
-                    }
-                    else{
-                        return done (err);
+                    if (err) {
+                        return done(err);
                     }
 
+                    if(res.header['location'] == '/dashboard'){
+                        return done();
+                    }
 
-
+                    return done(new Error('invalid location'));
                 });
         });
     });

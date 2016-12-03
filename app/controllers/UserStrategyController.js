@@ -45,7 +45,7 @@ UserStrategyController.prototype.home = function () {
 ///
 UserStrategyController.prototype.notifications = function () {
     return function (req, res) {
-        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var message = ['Sender', 'Title', 'Message', 'Time Remaining'];
         var messages = [];
         messages.push(message);
 
