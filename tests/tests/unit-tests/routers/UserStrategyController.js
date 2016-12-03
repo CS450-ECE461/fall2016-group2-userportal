@@ -18,7 +18,7 @@ describe ('DefaultRouter', function () {
 
     describe ('/dashboard', function () {
         describe ('POST', function () {
-            it ('should get all messages in the database', function (done) {
+            it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/dashboard')
                     .expect (200, done);
@@ -29,7 +29,7 @@ describe ('DefaultRouter', function () {
 
     describe ('/dashboard/home', function () {
         describe ('POST', function () {
-            it ('should get all messages in the database', function (done) {
+            it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/dashboard')
                     .expect (200, done);
@@ -40,7 +40,7 @@ describe ('DefaultRouter', function () {
 
     describe ('/dashboard/logout', function () {
         describe ('POST', function () {
-            it ('should get all messages in the database', function (done) {
+            it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/dashboard')
                     .expect (200, done);
@@ -51,7 +51,7 @@ describe ('DefaultRouter', function () {
 
     describe ('/dashboard/notifications', function () {
         describe ('POST', function () {
-            it ('should get all messages in the database', function (done) {
+            it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/dashboard')
                     .expect (200, done);
@@ -62,7 +62,7 @@ describe ('DefaultRouter', function () {
 
     describe ('/dashboard/compose', function () {
         describe ('POST', function () {
-            it ('should get all messages in the database', function (done) {
+            it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/dashboard')
                     .expect (200, done);
@@ -73,7 +73,7 @@ describe ('DefaultRouter', function () {
 
     describe ('/dashboard/contacts', function () {
         describe ('POST', function () {
-            it ('should get all messages in the database', function (done) {
+            it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/dashboard')
                     .expect (200, done);
@@ -84,7 +84,7 @@ describe ('DefaultRouter', function () {
 
     describe ('/dashboard/compose/close', function () {
         describe ('POST', function () {
-            it ('should get all messages in the database', function (done) {
+            it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/dashboard')
                     .expect (200, done);

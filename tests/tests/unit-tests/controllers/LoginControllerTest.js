@@ -12,14 +12,15 @@ var requirePath = '../../../app/';
 var appPath = (requirePath + "controllers/LoginController");
 
 describe ('LoginController', function () {
-    before (function (done) {
-        blueprint.testing.createApplicationAndStart (appPath, done)
-    });
 
-    describe ('/login', function () {
-        describe ('GET', function () {
+    describe ('POST', function () {
 
-
+        it ('should login successfully with valid credentials', function (done) {
+           request (blueprint.app.server.app)
+               .post('/login')
+               .send()
         });
+
     });
+
 });
