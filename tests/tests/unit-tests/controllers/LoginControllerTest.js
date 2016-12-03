@@ -17,9 +17,18 @@ describe ('LoginController', function () {
     describe ('POST', function () {
 
         it ('should login successfully with valid credentials', function (done) {
-           request (blueprint.app.server.app)
+
+            request (blueprint.app.server.app)
                .post('/login')
                .send()
+               .end(function(err,res){
+                  if (err) { return done (err); }
+
+                  console.log(res.redirect.value);
+
+                  return done();
+                  //expect().to.equal (something);
+               });
         });
     });
 
