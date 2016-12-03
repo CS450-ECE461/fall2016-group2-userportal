@@ -16,13 +16,15 @@ describe ('LoginRouter', function () {
         blueprint.testing.createApplicationAndStart (appPath, done)
     });
 
-    describe ('/', function () {
+
+    describe ('/login', function () {
         describe ('GET', function () {
             it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
-                    .get ('/login')
+                    .get ('/dashboard')
                     .expect (200, done);
             });
         });
     });
+
 });
