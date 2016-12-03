@@ -21,16 +21,18 @@ describe ('LoginController', function () {
                .post('/login')
                .send()
                .end(function(err,res){
-                  if (err) {
-                      return done (err);
-                  }
-                  else{
+                  if (!err) {
                       if(res.header['location'] === '/login'){
                           return done();
                       }
+                      else{
+                          return done(err);
+                      }
+                  }
+                  else{
+                      return done (err);
                   }
 
-                  return done (err);
                });
         });
     });
@@ -44,18 +46,20 @@ describe ('LoginController', function () {
                 .post('/login')
                 .send()
                 .end(function(err,res){
-                    if (err) {
-                        return done (err);
-                    }
-                    else{
-                        console.log(res.header['location']);
-
-                        if(res.header['location'] === '/dashboard'){
+                    if (!err) {
+                        if(res.header['location'] === '/dashboad'){
                             return done();
                         }
+                        else{
+                            return done(err);
+                        }
+                    }
+                    else{
+                        return done (err);
                     }
 
-                    return done (err);
+
+
                 });
         });
     });
