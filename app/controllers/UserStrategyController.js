@@ -20,6 +20,17 @@ UserStrategyController.prototype.dashboardInit = function () {
 
 
 ///
+/// Logs the user from passport and the admin server
+///
+UserStrategyController.prototype.logout = function () {
+    return function (req, res) {
+        req.logout ();
+        return res.redirect ('/login');
+    };
+};
+
+
+///
 /// This supplies the user with the default view
 ///
 UserStrategyController.prototype.home = function () {

@@ -80,7 +80,7 @@ describe ('UserStrategyController', function () {
     });
 
 
-    describe ('dashboard compose close', function () {
+    describe (' close', function () {
         before (function (done) {
             blueprint.testing.createApplicationAndStart (appPath, done)
         });
@@ -94,14 +94,14 @@ describe ('UserStrategyController', function () {
     });
 
 
-    describe ('dashboard compose send', function () {
+    describe ('dashboard compose', function () {
         before (function (done) {
             blueprint.testing.createApplicationAndStart (appPath, done)
         });
 
         it ('dashboardINIT', function (done) {
             request (blueprint.app.server.app)
-                .post('/dashboard/compose/send')
+                .post('/dashboard/compose')
                 .send()
                 .expect(200,done);
         });
