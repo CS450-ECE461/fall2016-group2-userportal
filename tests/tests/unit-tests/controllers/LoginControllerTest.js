@@ -10,14 +10,13 @@ var appPath = require ('../../../fixtures/appPath');
 
 describe ('LoginController', function () {
 
-    before (function (done) {
-        blueprint.testing.createApplicationAndStart (appPath, done)
-    });
+    describe ('POST invalid', function () {
 
-    describe ('POST', function () {
+        before (function (done) {
+            blueprint.testing.createApplicationAndStart (appPath, done)
+        });
 
-        it ('should login successfully with valid credentials', function (done) {
-
+        it ('should login successfully with invalid credentials', function (done) {
             request (blueprint.app.server.app)
                .post('/login')
                .send()
@@ -26,14 +25,38 @@ describe ('LoginController', function () {
                       return done (err);
                   }
                   else{
-                      //res.header['location'].should.include('/dasbhoard')
-                      console.log(res.header['location']);
-
-                      return done();
-                      //expect().to.equal (something);
+                      if(res.header['location'] === '/login'){
+                          return done();
+                      }
                   }
 
+                  return done (err);
                });
+        });
+    });
+
+
+
+    describe ('POST valid', function () {
+
+        it ('should login successfully with invalid credentials', function (done) {
+            request (blueprint.app.server.app)
+                .post('/login')
+                .send()
+                .end(function(err,res){
+                    if (err) {
+                        return done (err);
+                    }
+                    else{
+                        console.log(res.header['location']);
+
+                        if(res.header['location'] === '/dashboard'){
+                            return done();
+                        }
+                    }
+
+                    return done (err);
+                });
         });
     });
 
