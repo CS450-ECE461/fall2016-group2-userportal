@@ -22,12 +22,17 @@ describe ('LoginController', function () {
                .post('/login')
                .send()
                .end(function(err,res){
-                  if (err) { return done (err); }
+                  if (err) {
+                      return done (err);
+                  }
+                  else{
+                      //res.header['location'].should.include('/dasbhoard')
+                      console.log(res.header['location']);
 
-                  console.log(res.redirect.value);
+                      return done();
+                      //expect().to.equal (something);
+                  }
 
-                  return done();
-                  //expect().to.equal (something);
                });
         });
     });

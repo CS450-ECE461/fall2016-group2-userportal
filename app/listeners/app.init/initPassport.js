@@ -16,7 +16,7 @@ function initPassport (app) {
         };
 
         request
-            .post('localhost:5002/mock')
+            .post('localhost:5002/mock/loginTest')
             .send(userData)
             .end(function (err, resp) {
                 if(err) {

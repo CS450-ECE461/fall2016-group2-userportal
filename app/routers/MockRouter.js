@@ -2,9 +2,9 @@
  * Created by terrabyte on 11/5/16.
  */
 module.exports = exports = {
-    '/mock' : {
+    '/mock/loginTest' : {
         get  : {view   : 'mock.pug'},
-        post : {action : 'MockController@mock'}
+        post : {action : 'MockController@loginTest'}
     },
 
 
