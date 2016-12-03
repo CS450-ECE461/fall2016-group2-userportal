@@ -21,7 +21,7 @@ describe ('LoginRouter', function () {
         describe ('GET', function () {
             it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
-                    .get ('/dashboard')
+                    .get ('/login')
                     .expect (200, done);
             });
         });

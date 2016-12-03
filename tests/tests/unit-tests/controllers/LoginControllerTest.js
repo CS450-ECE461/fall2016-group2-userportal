@@ -35,7 +35,6 @@ describe ('LoginController', function () {
     });
 
 
-
     describe ('POST valid', function () {
 
         it ('should login successfully with invalid credentials', function (done) {
@@ -56,6 +55,26 @@ describe ('LoginController', function () {
         });
     });
 
+
+    describe ('POST valid', function () {
+
+        it ('should login successfully with invalid credentials', function (done) {
+            request (blueprint.app.server.app)
+                .post('/logout')
+                .send()
+                .end(function(err,res){
+                    if (err) {
+                        return done(err);
+                    }
+
+                    if(res.header['location'] == '/login'){
+                        return done();
+                    }
+
+                    return done(new Error('invalid location'));
+                });
+        });
+    });
 
 
 
