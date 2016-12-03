@@ -15,8 +15,10 @@ function initPassport (app) {
             "password" : password
         };
 
+        console.log('hi danny');
+
         request
-            .post('localhost:5002/mock')
+            .post('localhost:5002/mock/loginTest')
             .send(userData)
             .end(function (err, resp) {
                 if(err) {

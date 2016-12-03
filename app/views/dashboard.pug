@@ -34,7 +34,7 @@ html(lang="en")
                         div.col-sm-offset-2.col-sm-10
                             button.btn.btn-default(type='submit') Contacts
 
-                    form.form-horizontal(method='post', action='/dashboard/logout')
+                    form.form-horizontal(method='post', action='/logout')
                         div.col-sm-offset-2.col-sm-10
                             button.btn.btn-default(type='submit') Logout
 
@@ -50,7 +50,7 @@ html(lang="en")
                                     each contact in contacts
                                         tr(style='width:100%;border:1px solid black;padding:2px;')
                                         each attr in contact
-                                            th(style='width:33%;border:1px solid black;padding:2px;')= attr
+                                            th(style='width:20%;border:1px solid black;padding:2px;')= attr
 
                     //notifications tab
                     if(mainObj === 'notifications')
@@ -75,9 +75,8 @@ html(lang="en")
 
                     div.container(name='composeTitle' style='position:absolute;width:100%;height:100%;left:0%;top:5%;')
                         span Title
-
                     div.container(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:10%;')
-                        textarea(style='position:absolute;width:96%;height:100%;left:2%;top:0%;')
+                        textarea(id='composeTitleArea' style='position:absolute;width:96%;height:100%;left:2%;top:0%;')
 
                     div.container(name='composeContacts' style='position:absolute;width:100%;height:5%;left:0%;top:15%;')
                         form.form-horizontal(name='composeContactsForm', method='post', action='/dashboard/contacts')
@@ -87,7 +86,7 @@ html(lang="en")
                     div.container(name='composeMessage' style='position:absolute;width:100%;height:75%;left:0%;top:20%;')
                         div.container(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:0%;')
                             span Message
-                        textarea(style='position:absolute;width:96%;height:95%;left:2%;top:5%;')
+                        textarea(id='composeTextArea' style='position:absolute;width:96%;height:95%;left:2%;top:5%;')
 
                     div.container(name='composeSend' style='position:absolute;width:100%;height:5%;left:0%;top:95%;')
                         form.form-horizontal(method='post', action='/dashboard/compose/send')

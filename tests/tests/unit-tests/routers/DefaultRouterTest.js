@@ -17,8 +17,8 @@ describe ('DefaultRouter', function () {
     });
 
     describe ('/login', function () {
-        describe ('POST', function () {
-            it ('should get all messages in the database', function (done) {
+        describe ('GET', function () {
+            it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/login')
                     .expect (200, done);
