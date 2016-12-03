@@ -17,7 +17,7 @@ describe ('DefaultRouter', function () {
     });
 
     describe ('/login', function () {
-        describe ('POST', function () {
+        describe ('GET', function () {
             it ('check if this router routed correctly', function (done) {
                 request (blueprint.app.server.app)
                     .get ('/login')

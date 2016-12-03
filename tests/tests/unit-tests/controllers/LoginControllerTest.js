@@ -6,12 +6,13 @@ var blueprint = require ('@onehilltech/blueprint')
     , request   = require ('supertest')
     , expect    = require ('chai').expect;
 
-var requirePath = '../../../app/';
-
-
-var appPath = (requirePath + "controllers/LoginController");
+var appPath = require ('../../../fixtures/appPath');
 
 describe ('LoginController', function () {
+
+    before (function (done) {
+        blueprint.testing.createApplicationAndStart (appPath, done)
+    });
 
     describe ('POST', function () {
 
@@ -20,7 +21,7 @@ describe ('LoginController', function () {
                .post('/login')
                .send()
         });
-
     });
+
 
 });
