@@ -13,13 +13,6 @@ module.exports = exports = {
         post : { action : 'UserStrategyController@home' }
     },
 
-
-    '/dashboard/logout' : {
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@logout' }
-    },
-
-
     '/dashboard/notifications' : {
         get  : { view   : 'dashboard.pug' },
         post : { action : 'UserStrategyController@notifications' }
