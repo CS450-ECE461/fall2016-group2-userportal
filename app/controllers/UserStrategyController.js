@@ -30,7 +30,7 @@ UserStrategyController.prototype.home = function () {
 
 
 ///
-/// This supplies the user with the notification view
+/// This supplies the user with the notifications view as a main tab
 ///
 UserStrategyController.prototype.notifications = function () {
     return function (req, res) {
@@ -47,20 +47,44 @@ UserStrategyController.prototype.notifications = function () {
 
 
 ///
-/// This supplies the user with the message generation view (compose)
+/// This supplies the user with the message generation view (compose) as a pop up
 ///
 UserStrategyController.prototype.compose = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', { 'composeMessage': 'true'});
+        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'true',
+            'contactsList': 'false', 'messages': messages});
     };
 };
 
+
+//
+// This closes the message generation view (compose) pop up
+//
 UserStrategyController.prototype.composeClose = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', { 'composeMessage': 'false'});
+        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
+            'contactsList': 'false', 'messages': messages});
     };
 };
 
+
+//
+// This supplies the user with the message sending view
+//
 UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
@@ -97,13 +121,21 @@ UserStrategyController.prototype.composeSend = function () {
                 }
             });
 
-        return res.render ('dashboard.pug', { 'composeMessage': 'false'});
+        var messageHeaders = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(messageHeaders);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
+            'contactsList': 'false', 'messages': messages});
     };
 };
 
 
 ///
-/// This supplies the user with the contacts view
+/// This supplies the user with the contacts view as a pop up
 ///
 UserStrategyController.prototype.contacts = function () {
     return function (req, res) {
@@ -114,9 +146,33 @@ UserStrategyController.prototype.contacts = function () {
         contacts.push(['Rob', 'rob@iupui.edu', 'Google', 'Software Engineer']);
         contacts.push(['Tim', 'tim@iupui.edu', 'Amazon', 'Software Analyst']);
 
-        res.render('dashboard.pug', { 'mainObj': 'contacts', 'contacts': contacts });
+        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
+            'contactsList': 'true', 'messages': messages, 'contacts': contacts });
     };
 };
 
+
+//
+// This closes the contacts view pop up
+//
+UserStrategyController.prototype.contactsClose = function () {
+    return function (req, res) {
+        var message = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': messages});
+    };
+};
 
 module.exports = exports = UserStrategyController;

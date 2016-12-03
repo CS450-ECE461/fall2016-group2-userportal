@@ -18,18 +18,10 @@ module.exports = exports = {
         post : { action : 'UserStrategyController@notifications' }
     },
 
-
     '/dashboard/compose' : {
         get  : { view   : 'dashboard.pug' },
         post : { action : 'UserStrategyController@compose' }
     },
-
-
-    '/dashboard/contacts' : {
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@contacts' }
-    },
-
 
     '/dashboard/compose/close' : {
         get  : { view   : 'dashboard.pug' },
@@ -39,7 +31,16 @@ module.exports = exports = {
     '/dashboard/compose/send' : {
         get  : { view   : 'dashboard.pug' },
         post : { action : 'UserStrategyController@composeSend' }
+    },
+
+    '/dashboard/contacts' : {
+        get  : { view   : 'dashboard.pug' },
+        post : { action : 'UserStrategyController@contacts' }
+    },
+
+    '/dashboard/contacts/close' : {
+        get  : { view   : 'dashboard.pug' },
+        post : { action : 'UserStrategyController@contactsClose'}
     }
 
 };
-
