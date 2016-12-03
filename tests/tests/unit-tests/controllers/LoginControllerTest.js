@@ -47,7 +47,7 @@ describe ('LoginController', function () {
                         return done(err);
                     }
 
-                    if(res.header['location'] == '/dashboard'){
+                    if(res.header['location'] == '/login'){
                         return done();
                     }
 

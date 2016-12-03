@@ -8,29 +8,19 @@ var blueprint = require ('@onehilltech/blueprint')
 
 var appPath = require ('../../../fixtures/appPath');
 
-describe ('DefaultController', function () {
+describe ('UserStrategyController', function () {
 
-    describe ('POST invalid', function () {
+    describe ('POST', function () {
 
         before (function (done) {
             blueprint.testing.createApplicationAndStart (appPath, done)
         });
 
-        it ('should go to the login page', function (done) {
+        it ('dashboardINIT', function (done) {
             request (blueprint.app.server.app)
-                .post('/')
+                .post('/dashboard')
                 .send()
-                .end(function(err,res){
-                    if (err) {
-                        return done(err);
-                    }
-
-                    if(res.header['location'] === '/login'){
-                        return done();
-                    }
-
-                    return done(new Error('invalid location'));
-                });
+                .expect(200,done);
         });
     });
 
