@@ -23,3 +23,4 @@ MockController.prototype.messageTest = function () {
 
 
 module.exports = exports = MockController;
+//
