@@ -1,6 +1,8 @@
 var blueprint = require ('@onehilltech/blueprint'),
     util      = require ('util'),
-    request   = require('superagent');
+    request   = require('superagent'),
+    passport = require('passport-local')
+    ;
 
 function UserStrategyController () {
     blueprint.BaseController.call (this);
@@ -88,20 +90,25 @@ UserStrategyController.prototype.composeClose = function () {
 UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
-        messageData = [];
-
         var token = req.user;
-        var contacts = [];
-        contacts.push("test@iupui.edu");
-        var dt = Date.now();
+        //var contacts = [];
+        //contacts.push("test@iupui.edu");
+        var contact = "test@iupui.edu";
+        var dt = Date.now()+10000;
         var title = "Test Title";
         var message = "Hi there how is your day, what are you up to?";
 
-        messageData.push(token);
-        messageData.push(contacts);
-        messageData.push(dt);
-        messageData.push(title);
-        messageData.push(message);
+        var messageData = {
+            message: {
+                sender_email: 'sender@testmail.com',
+                receiver_email: contact,
+                received: false,
+                viewed: false,
+                expireAt: dt,
+                title: title,
+                content: message
+            }
+        };
 
 
         var msgResponse;
@@ -109,15 +116,18 @@ UserStrategyController.prototype.composeSend = function () {
         //'35.163.81.202:5000/v1/messages'
         //'localhost:5002/mock/messageTest'
         request
-            .post('35.163.81.202:5000/v1/messages')
+            .post('localhost:5002/mock/messageTest')
+            .set('Authorization', 'bearer'+token)
             .send(messageData)
             .end(function (err, resp) {
                 if(err) {
                     if (err.status == '400') {
-                        return done (null,false,{message: "Error Sending Message"});
+                        console.log('we got a 400');
+                        //return done (null,false,{message: "Error Sending Message"});
                     }
 
-                    return done (err,false);
+                    return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
+                        'contactsList': 'false'});
 
                 } else {
                     msgResponse = resp.body.msgResp;
@@ -126,9 +136,8 @@ UserStrategyController.prototype.composeSend = function () {
             });
 
 
-        ///
-        ///update and go to notifications
-        ///
+
+
         var messageHeaders = ['Sender','Title','Message', 'Time Remaining'];
         var messages = [];
         messages.push(messageHeaders);
@@ -138,6 +147,7 @@ UserStrategyController.prototype.composeSend = function () {
 
         return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
             'contactsList': 'false', 'messages': messages});
+
     };
 };
 
