@@ -1,8 +1,6 @@
 var blueprint = require ('@onehilltech/blueprint'),
     util      = require ('util'),
-    request   = require('superagent'),
-    passport = require('passport-local')
-    ;
+    request   = require('superagent');
 
 function UserStrategyController () {
     blueprint.BaseController.call (this);
@@ -36,33 +34,6 @@ UserStrategyController.prototype.home = function () {
 ///
 UserStrategyController.prototype.notifications = function () {
     return function (req, res) {
-
-        var token = "demo";
-
-        //'35.163.81.202:5000/v1/messages'
-        //'localhost:5002/mock/messageTest'
-        /*
-        request
-            .post('35.163.81.202:5000/v1/messages')
-            .set('Authorization', 'bearer'+token)
-            .end(function (err, resp) {
-                if(err) {
-                    if (err.status == '400') {
-                        console.log('we got a 400');
-                        //return done (null,false,{message: "Error Sending Message"});
-                    }
-
-                    console.log(err);
-
-                } else {
-                    msgResponse = resp.body.msgResp;
-                    console.log(msgResponse);
-                }
-            });
-        */
-
-
-        //before
         var message = ['Sender', 'Title', 'Message', 'Time Remaining'];
         var messages = [];
         messages.push(message);
@@ -117,44 +88,32 @@ UserStrategyController.prototype.composeClose = function () {
 UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
-        var token = req.user;
-        //var contacts = [];
-        //contacts.push("test@iupui.edu");
-        var contact = "test@iupui.edu";
-        var dt = Date.now()+10000;
+        messageData = [];
+
         var title = "Test Title";
+        var contacts = [];
+        contacts.push("test@iupui.edu");
         var message = "Hi there how is your day, what are you up to?";
+        var dt = Date.now();
 
-        var messageData = {
-            message: {
-                sender_email: 'sender@testmail.com',
-                receiver_email: contact,
-                received: false,
-                viewed: false,
-                expireAt: dt,
-                title: title,
-                content: message
-            }
-        };
-
+        messageData.push(title);
+        messageData.push(contacts);
+        messageData.push(message);
+        messageData.push(dt);
 
         var msgResponse;
 
         //'35.163.81.202:5000/v1/messages'
-        //'localhost:5002/mock/messageTest'
         request
-            .post('localhost:5000/v1/messages')
-            .set('Authorization', 'bearer'+token)
+            .post('localhost:5002/mock/messageTest')
             .send(messageData)
             .end(function (err, resp) {
                 if(err) {
                     if (err.status == '400') {
-                        console.log('we got a 400');
-                        //return done (null,false,{message: "Error Sending Message"});
+                        return done (null,false,{message: "Error Sending Message"});
                     }
 
-                    return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-                        'contactsList': 'false'});
+                    return done (err,false);
 
                 } else {
                     msgResponse = resp.body.msgResp;
@@ -162,14 +121,15 @@ UserStrategyController.prototype.composeSend = function () {
                 }
             });
 
+        var messageHeaders = ['Sender','Title','Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(messageHeaders);
 
+        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
 
-
-        //close the message and contacts list
-        return res.render ('dashboard.pug', {  'composeMessage': 'false',
-            'contactsList': 'false'});
-
-
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
+            'contactsList': 'false', 'messages': messages});
     };
 };
 
@@ -179,30 +139,6 @@ UserStrategyController.prototype.composeSend = function () {
 ///
 UserStrategyController.prototype.contacts = function () {
     return function (req, res) {
-
-        //'35.163.81.202:5000/v1/messages'
-        //'localhost:5002/mock/messageTest'
-        /*
-         request
-         .post('35.163.81.202:5000/v1/messages')
-         .set('Authorization', 'bearer'+token)
-         .end(function (err, resp) {
-         if(err) {
-         if (err.status == '400') {
-         console.log('we got a 400');
-         //return done (null,false,{message: "Error Sending Message"});
-         }
-
-         console.log(err);
-
-         } else {
-         msgResponse = resp.body.msgResp;
-         console.log(msgResponse);
-         }
-         });
-         */
-
-        //before
         var contact = ['Name', 'Contact Address', 'Company', 'Business Title'];
         var contacts = [];
         contacts.push(contact);
