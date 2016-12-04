@@ -13,34 +13,35 @@ module.exports = exports = {
         post : { action : 'UserStrategyController@home' }
     },
 
+
+    '/dashboard/logout' : {
+        get  : { view   : 'dashboard.pug' },
+        post : { action : 'UserStrategyController@logout' }
+    },
+
+
     '/dashboard/notifications' : {
         get  : { view   : 'dashboard.pug' },
         post : { action : 'UserStrategyController@notifications' }
     },
+
 
     '/dashboard/compose' : {
         get  : { view   : 'dashboard.pug' },
         post : { action : 'UserStrategyController@compose' }
     },
 
-    '/dashboard/compose/close' : {
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@composeClose' }
-    },
-
-    '/dashboard/compose/send' : {
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@composeSend' }
-    },
 
     '/dashboard/contacts' : {
         get  : { view   : 'dashboard.pug' },
         post : { action : 'UserStrategyController@contacts' }
     },
 
-    '/dashboard/contacts/close' : {
+
+    '/dashboard/compose/close' : {
         get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@contactsClose'}
+        post : { action : 'UserStrategyController@composeClose' }
     }
 
 };
+

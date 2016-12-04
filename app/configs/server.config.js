@@ -1,4 +1,4 @@
-var blueprint = require ('@onehilltech/blueprint')
+var blueprint = require ('@onehilltech/blueprint'), path = require ('path')
     ;
 
 module.exports = exports = {
@@ -7,7 +7,11 @@ module.exports = exports = {
             port: 5002
         }
     },
-
+	
+	statics : [
+    path.resolve (__dirname, '../../public_html')
+	],
+	
     middleware : {
         validator  : { },
         bodyParser : {
@@ -37,5 +41,7 @@ module.exports = exports = {
             saveUninitialized: true,
             cookie: { secure: false }
         }
+			
     }
+
 };
