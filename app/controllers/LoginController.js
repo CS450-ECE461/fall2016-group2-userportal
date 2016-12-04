@@ -1,51 +1,31 @@
-var blueprint = require ('@onehilltech/blueprint'),
-    request   = require('superagent'),
-    util      = require ('util')
-  ;
+var blueprint = require ('@onehilltech/blueprint')
+    request =  require ('superagent')
+;
 
 function LoginController () {
-  blueprint.BaseController.call (this);
+    blueprint.BaseController.call (this);
 }
 
 blueprint.controller (LoginController);
 
+///
+/// We are good to go, blueprint let us go to the dashboard!
+///
 LoginController.prototype.login = function () {
-    var self = this;
-
     return function (req, res) {
+        return res.redirect('/dashboard');
+    };
+};
 
-        var token;
 
-
-        var userData = {
-            "username": req.body.name,
-            "password": req.body.password
-        }
-
-        //api server requests
-        request
-            .post('localhost:5000/login')
-            .send(userData)
-            .end(function (err, resp) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    token = resp.body.token;
-                    console.log(token);
-                }
-
-                if(token){
-                    return res.render('loggedin.pug', {});
-                }
-                else{
-                    return res.render('login.pug', {message: "Error authenticating account."});
-                }
-            });
+///
+/// Logs the user from passport and the admin server
+///
+LoginController.prototype.logout = function () {
+    return function (req, res) {
+        req.logout ();
+        return res.redirect ('/login');
     };
 };
 
 module.exports = exports = LoginController;
-
-
-
-
