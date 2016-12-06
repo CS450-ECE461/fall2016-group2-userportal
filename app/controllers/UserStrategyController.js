@@ -42,24 +42,24 @@ UserStrategyController.prototype.notifications = function () {
         //'35.163.81.202:5000/v1/messages'
         //'localhost:5002/mock/messageTest'
         /*
-        request
-            .post('35.163.81.202:5000/v1/messages')
-            .set('Authorization', 'bearer'+token)
-            .end(function (err, resp) {
-                if(err) {
-                    if (err.status == '400') {
-                        console.log('we got a 400');
-                        //return done (null,false,{message: "Error Sending Message"});
-                    }
+         request
+         .post('35.163.81.202:5000/v1/messages')
+         .set('Authorization', 'bearer'+token)
+         .end(function (err, resp) {
+         if(err) {
+         if (err.status == '400') {
+         console.log('we got a 400');
+         //return done (null,false,{message: "Error Sending Message"});
+         }
 
-                    console.log(err);
+         console.log(err);
 
-                } else {
-                    msgResponse = resp.body.msgResp;
-                    console.log(msgResponse);
-                }
-            });
-        */
+         } else {
+         msgResponse = resp.body.msgResp;
+         console.log(msgResponse);
+         }
+         });
+         */
 
 
         //before
