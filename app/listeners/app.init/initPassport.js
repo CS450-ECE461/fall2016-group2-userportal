@@ -15,7 +15,9 @@ function initPassport (app) {
             "password" : password
         };
 
-        console.log('hi danny');
+
+        //needs to hit
+        //http://35.165.94.204:5000/login
 
         request
             .post('localhost:5002/mock/loginTest')
