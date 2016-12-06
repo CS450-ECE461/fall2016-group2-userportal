@@ -11,47 +11,51 @@ html(lang="en")
 
         div.container(style='width:100%;height:100%;')
 
-            div(id='topHalf' style='float:top;height:20%;')
-                div(id='mainTitle' style='text-align:center;')
-                    h1 You have now logged in!
+            div(id='buttonBar' style='position:absolute;width:10%;height:100%;left:0%;top:0%;background-color:rgb(49,60,80);')
 
-            div(id='bottomHalf' style='position:absolute;width:100%;height:80%;left:0%;top:20%;')
+                form.form-horizontal(method='post', action='/dashboard/home')
+                    div(style='position:absolute;width:100%;height:20%;left:0%;top:0%;')
+                        input(style='width:100%;height:100%;' type='image' src="/assets/hive-logo2.png" alt='Submit')
 
-                div(id='buttonBar' style='position:absolute;width:10%;height:100%;left:0%;top:0%;border-style:solid;background-color:rgb(49,60,80);')
-                    form.form-horizontal(method='post', action='/dashboard/home')
-                        div(style='position:absolute;width:100%;height:20%;left:0%;top:0%;')
-                            input(style='width:100%; height:100%;' type='image' src="/assets/hive-logo2.png" alt='Submit')
+                form.form-horizontal(method='post', action='/dashboard/notifications' style='height80%;')
+                    div(style='position:absolute;width:100%;height:14%;left:0%;top:23%;')
+                        input(style='width:100%;height:100%;' type='image' src="/assets/notifications2.png" alt='Submit')
 
-                    form.form-horizontal(method='post', action='/dashboard/notifications' style='height80%;')
-                        div(style='position:absolute;width:100%;height:20%;left:0%;top:20%;')
-                            input(style='width:100%; height:100%;' type='image' src="/assets/notifications2.png" alt='Submit')
+                form.form-horizontal(method='post', action='/dashboard/compose')
+                    div(style='position:absolute;width:100%;height:14%;left:0%;top:43%;')
+                        input(style='width:100%; height:100%;' type='image' src="/assets/sent2.png" alt='Submit')
 
-                    form.form-horizontal(method='post', action='/dashboard/compose')
-                        div(style='position:absolute;width:100%;height:20%;left:0%;top:40%;')
-                            input(style='width:100%; height:100%;' type='image' src="/assets/sent2.png" alt='Submit')
+                form.form-horizontal(method='post', action='/dashboard/contacts')
+                    div(style='position:absolute;width:100%;height:12%;left:0%;top:64%;')
+                        input(style='width:100%; height:100%;' type='image' src="/assets/Contacts2.png" alt='Submit')
 
-                    form.form-horizontal(method='post', action='/dashboard/contacts')
-                        div(style='position:absolute;width:100%;height:20%;left:0%;top:60%;')
-                            input(style='width:100%; height:100%;' type='image' src="/assets/Contacts2.png" alt='Submit')
+                form.form-horizontal(method='post', action='/dashboard/logout')
+                    div(style='position:absolute;width:100%;height:20%;left:0%;top:80%;')
+                        button.btn.btn-default(type='submit' style='width:100%;height:100%;left:0%;top:0%;font-size:20px;') Logout
 
-                    form.form-horizontal(method='post', action='/dashboard/logout')
-                        div(style='position:absolute;width:100%;height:20%;left:0%;top:80%;')
-                            button.btn.btn-default(type='submit' style='width:100%;height:100%;left:0%;top:0%;') Logout
+            div.container(id='rightHalf' style='position:absolute;width:90%;height:100%;left:10%;top:0%;background-color:rgb(147,180,240);')
 
-                div(id='mainDiv' style='position:absolute;width:90%;height100%;left:10%;top:0%;border-style:solid;')
+                div(id='topHalf' style='position:absolute;width:98%;height:20%;left:2%;top:0%;')
 
-                    //switches to notifications tab
-                    if(mainObj === 'notifications')
-                        table(style='width:100%;')
-                            thead
-                            tbody
-                                if(messages)
-                                    each message in messages
-                                        tr(style='width:100%;border:1px solid black;padding:2px;')
-                                        each attr in message
-                                            th(style='width:25%;border:1px solid black;padding:2px;')= attr
+                    div(id='mainTitle' style='text-align:left;padding:5px;')
+                        h1(style='font-size:56px;') welcome to hive!
 
-                    //add other tabs (e.g., calendar) at this level, under mainDiv
+                div(id='bottomHalf' style='position:absolute;width:96%;height80%;left:2%;top:20%;')
+
+                    div(id='mainDiv' style='position:absolute;width:100%;height100%;left:0%;top:0%;')
+
+                        //switches to notifications tab
+                        if(mainObj === 'notifications')
+                            table(style='width:100%;')
+                                thead
+                                tbody
+                                    if(messages)
+                                        each message in messages
+                                            tr(style='width:100%;border:1px solid black;padding:2px;')
+                                            each attr in message
+                                                th(style='width:auto;border:1px #aaaaaa;padding:2px;')= attr
+
+                        //add other tabs (e.g., calendar) at this level, under mainDiv
 
             //brings up contacts pop up
             if(contactsList === 'true')
@@ -71,7 +75,7 @@ html(lang="en")
                                         each contact in contacts
                                             tr(style='width:100%;border:1px solid black;padding:2px;')
                                             each attr in contact
-                                                th(style='width:33%;border:1px solid black;padding:2px;')= attr
+                                                th(style='width:auto;border:1px #aaaaaa;padding:2px;')= attr
 
                         div.container(name='contactsSelect' style='position:absolute;width:100%;height:10%;left:0%;top:90%;')
                             form.form-horizontal(name='contactsSelectForm', method='post', action='/dashboard/compose')
