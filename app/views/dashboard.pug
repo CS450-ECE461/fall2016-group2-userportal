@@ -33,7 +33,7 @@ html(lang="en")
                     div(style='position:absolute;width:100%;height:20%;left:0%;top:80%;')
                         button.btn.btn-default(type='submit' style='width:100%;height:100%;left:0%;top:0%;font-size:20px;') Logout
 
-            div.container(id='rightHalf' style='position:absolute;width:90%;height:100%;left:10%;top:0%;background-color:rgb(147,180,240);')
+            div.container(id='rightHalf' style='position:absolute;width:90%;height:100%;left:10%;top:0%;background-image:url("../assets/background.png");')
 
                 div(id='topHalf' style='position:absolute;width:98%;height:20%;left:2%;top:0%;')
 
@@ -53,7 +53,7 @@ html(lang="en")
                                         each message in messages
                                             tr(style='width:100%;border:1px solid black;padding:2px;')
                                             each attr in message
-                                                th(style='width:auto;border:1px #aaaaaa;padding:2px;')= attr
+                                                th(style='width:auto;border:1px black;padding:2px;')= attr
 
                         //add other tabs (e.g., calendar) at this level, under mainDiv
 
@@ -75,7 +75,7 @@ html(lang="en")
                                         each contact in contacts
                                             tr(style='width:100%;border:1px solid black;padding:2px;')
                                             each attr in contact
-                                                th(style='width:auto;border:1px #aaaaaa;padding:2px;')= attr
+                                                th(style='width:auto;border:1px #black;padding:2px;')= attr
 
                         div.container(name='contactsSelect' style='position:absolute;width:100%;height:10%;left:0%;top:90%;')
                             form.form-horizontal(name='contactsSelectForm', method='post', action='/dashboard/compose')

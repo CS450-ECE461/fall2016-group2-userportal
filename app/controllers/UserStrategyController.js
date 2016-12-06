@@ -165,9 +165,16 @@ UserStrategyController.prototype.composeSend = function () {
 
 
 
-        //close the message and contacts list
-        return res.render ('dashboard.pug', {  'composeMessage': 'false',
-            'contactsList': 'false'});
+        //before
+        var message = ['Sender', 'Title', 'Message', 'Time Remaining'];
+        var messages = [];
+        messages.push(message);
+
+        messages.push(['rob@iupui.edu','Welcome','Welcome to Google.','10 hours']);
+        messages.push(['bob@iupui.edu','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+
+        res.render('dashboard.pug', { 'composeMessage': 'false', 'contactsList': 'false',
+            'mainObj': 'notifications', 'messages': messages });
 
 
     };
