@@ -19,8 +19,8 @@ function initPassport (app) {
 
 
         var userData = {
-            "username" : "test@test.com",
-            "password" : "password"
+            "email" : "test@test.com",
+            "password": "password"
         };
 
         //needs to hit
