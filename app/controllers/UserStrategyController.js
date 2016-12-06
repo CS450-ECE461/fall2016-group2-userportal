@@ -104,6 +104,7 @@ UserStrategyController.prototype.composeSend = function () {
                 receiver_email: contact,
                 received: false,
                 viewed: false,
+                //expireAt: dt,
                 title: title,
                 content: message
             }
