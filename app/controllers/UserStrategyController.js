@@ -104,6 +104,7 @@ UserStrategyController.prototype.composeSend = function () {
         var msgResponse;
 
         //'35.163.81.202:5000/v1/messages'
+        //localhost:5002/mock/messageTest
         request
             .post('localhost:5002/mock/messageTest')
             .send(messageData)
@@ -116,7 +117,7 @@ UserStrategyController.prototype.composeSend = function () {
                     return done (err,false);
 
                 } else {
-                    msgResponse = resp.body.msgResp;
+                    msgResponse = resp.body;
                     console.log(msgResponse);
                 }
             });
