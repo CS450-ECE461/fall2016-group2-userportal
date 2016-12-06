@@ -10,23 +10,33 @@ function initPassport (app) {
     function authorize (username, password, done) {
         var token;
 
+        /*
         var userData = {
             "username" : username,
             "password" : password
         };
+        */
 
+
+        var userData = {
+            "username" : "test@test.com",
+            "password" : "password"
+        };
 
         //needs to hit
+        //localhost:5002/mock/loginTest
         //http://35.165.94.204:5000/login
 
         request
-            .post('localhost:5002/mock/loginTest')
+            .post('35.165.94.204:5000/login')
             .send(userData)
             .end(function (err, resp) {
                 if(err) {
                     if (err.status == '400') {
+                        console.log('uh oh we got a 400 for login');
                         return done (null,false,{message: "Password is incorrect."});
                     }
+
 
                     return done (err,false);
 
