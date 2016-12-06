@@ -1,7 +1,5 @@
 var blueprint = require ('@onehilltech/blueprint'),
-    util      = require ('util'),
-    request   = require('superagent'),
-    passport = require('passport-local')
+    request   = require('superagent')
     ;
 
 function UserStrategyController () {
@@ -37,40 +35,26 @@ UserStrategyController.prototype.home = function () {
 UserStrategyController.prototype.notifications = function () {
     return function (req, res) {
 
-        var token = "demo";
+        var token = req.user;
 
-        //'35.163.81.202:5000/v1/messages'
-        //'localhost:5002/mock/messageTest'
-        /*
+        var route = '/v1/messages';
+        if (process.env.NODE_ENV == 'test') {
+            route = '/mock/messageTest';
+        }
+
         request
-            .post('35.163.81.202:5000/v1/messages')
-            .set('Authorization', 'bearer'+token)
-            .end(function (err, resp) {
-                if(err) {
-                    if (err.status == '400') {
-                        console.log('we got a 400');
-                        //return done (null,false,{message: "Error Sending Message"});
-                    }
-
-                    console.log(err);
-
-                } else {
-                    msgResponse = resp.body.msgResp;
-                    console.log(msgResponse);
-                }
-            });
-        */
-
-
-        //before
-        var message = ['Sender', 'Title', 'Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
-
-        messages.push(['rob@iupui.edu','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['bob@iupui.edu','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
-
-        res.render('dashboard.pug', { 'mainObj': 'notifications', 'messages': messages });
+          .post(blueprint.app.configs.apiserver.baseuri + route)
+          .set('Authorization', 'bearer ' + token)
+          .end(function (err, resp) {
+            if(err) {
+              if (err.status == '400') {
+                return done (null,false,{message: "Error Sending Message"});
+              }
+            } else {
+              var messages = resp.body.messages;
+              res.render('dashboard.pug', { 'mainObj': 'notifications', 'messages': messages });
+            }
+          });
     };
 };
 
@@ -118,8 +102,6 @@ UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
         var token = req.user;
-        //var contacts = [];
-        //contacts.push("test@iupui.edu");
         var contact = "test@iupui.edu";
         var dt = Date.now()+10000;
         var title = "Test Title";
