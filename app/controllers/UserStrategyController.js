@@ -43,16 +43,20 @@ UserStrategyController.prototype.notifications = function () {
         }
 
         request
-          .post(blueprint.app.configs.apiserver.baseuri + route)
-          .set('Authorization', 'bearer ' + token)
-          .end(function (err, resp) {
+          .get (blueprint.app.configs.apiserver.baseuri + route)
+          .set ('Authorization', 'bearer ' + token)
+          .end (function (err, resp) {
             if(err) {
               if (err.status == '400') {
-                return done (null,false,{message: "Error Sending Message"});
+                //return done (null,false,{message: "Error Sending Message"});
               }
             } else {
               var messages = resp.body.messages;
-              res.render('dashboard.pug', { 'mainObj': 'notifications', 'messages': messages });
+              var list = [];
+              for (var i = 0; i < messages.length; i++) {
+                  list[i] = {content: messages[i].content };
+              }
+              res.render('dashboard.pug', { 'mainObj': 'notifications', 'messages': list });
             }
           });
     };
@@ -64,15 +68,8 @@ UserStrategyController.prototype.notifications = function () {
 ///
 UserStrategyController.prototype.compose = function () {
     return function (req, res) {
-        var message = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
-
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
-
         return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'true',
-            'contactsList': 'false', 'messages': messages});
+            'contactsList': 'false', 'messages': []});
     };
 };
 
@@ -82,15 +79,9 @@ UserStrategyController.prototype.compose = function () {
 //
 UserStrategyController.prototype.composeClose = function () {
     return function (req, res) {
-        var message = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
-
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
 
         return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-            'contactsList': 'false', 'messages': messages});
+            'contactsList': 'false', 'messages': []});
     };
 };
 
@@ -102,36 +93,34 @@ UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
         var token = req.user;
-        var contact = "test@iupui.edu";
+        var contact = 'danieljpeck93@gmail.com';
         var dt = Date.now()+10000;
         var title = "Test Title";
         var message = "Hi there how is your day, what are you up to?";
 
         var messageData = {
             message: {
-                sender_email: 'sender@testmail.com',
+                sender_email: 'danieljpeck93@gmail.com',
                 receiver_email: contact,
                 received: false,
                 viewed: false,
-                expireAt: dt,
                 title: title,
                 content: message
             }
         };
 
+        var route = '/v1/messages';
+        if (process.env.NODE_ENV == 'test') {
+          route = '/mock/messageTest';
+        }
 
-        var msgResponse;
-
-        //'35.163.81.202:5000/v1/messages'
-        //'localhost:5002/mock/messageTest'
         request
-            .post('localhost:5000/v1/messages')
-            .set('Authorization', 'bearer'+token)
+            .post(blueprint.app.configs.apiserver.baseuri + route)
+            .set('Authorization', 'bearer ' + token)
             .send(messageData)
             .end(function (err, resp) {
                 if(err) {
                     if (err.status == '400') {
-                        console.log('we got a 400');
                         //return done (null,false,{message: "Error Sending Message"});
                     }
 
@@ -139,19 +128,12 @@ UserStrategyController.prototype.composeSend = function () {
                         'contactsList': 'false'});
 
                 } else {
-                    msgResponse = resp.body.msgResp;
-                    console.log(msgResponse);
+                  var messages = resp.body;
+
+                  return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', messages: messages,
+                    'contactsList': 'false'});
                 }
             });
-
-
-
-
-        //close the message and contacts list
-        return res.render ('dashboard.pug', {  'composeMessage': 'false',
-            'contactsList': 'false'});
-
-
     };
 };
 
@@ -161,46 +143,29 @@ UserStrategyController.prototype.composeSend = function () {
 ///
 UserStrategyController.prototype.contacts = function () {
     return function (req, res) {
+        var token = req.user;
 
-        //'35.163.81.202:5000/v1/messages'
-        //'localhost:5002/mock/messageTest'
-        /*
-         request
-         .post('35.163.81.202:5000/v1/messages')
-         .set('Authorization', 'bearer'+token)
-         .end(function (err, resp) {
-         if(err) {
-         if (err.status == '400') {
-         console.log('we got a 400');
-         //return done (null,false,{message: "Error Sending Message"});
-         }
+        var route = '/v1/organizations/users';
+        if (process.env.NODE_ENV == 'test') {
+            route = '/mock/contactTest';
+        }
 
-         console.log(err);
+        request
+         .get (blueprint.app.configs.apiserver.baseuri + route)
+         .set ('Authorization', 'bearer ' + token)
+         .end (function (err, resp) {
+             if (err) {
+                 if (err.status == '400') {
+                   console.log('we got a 400');
+                   //return done (null,false,{message: "Error Sending Message"});
+                 }
+             } else {
+               var contacts = resp.body;
 
-         } else {
-         msgResponse = resp.body.msgResp;
-         console.log(msgResponse);
-         }
+               return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
+                 'contactsList': 'true', 'messages': [], 'contacts': contacts });
+            }
          });
-         */
-
-        //before
-        var contact = ['Name', 'Contact Address', 'Company', 'Business Title'];
-        var contacts = [];
-        contacts.push(contact);
-
-        contacts.push(['Rob', 'rob@iupui.edu', 'Google', 'Software Engineer']);
-        contacts.push(['Tim', 'tim@iupui.edu', 'Amazon', 'Software Analyst']);
-
-        var message = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
-
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
-
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-            'contactsList': 'true', 'messages': messages, 'contacts': contacts });
     };
 };
 
@@ -210,14 +175,7 @@ UserStrategyController.prototype.contacts = function () {
 //
 UserStrategyController.prototype.contactsClose = function () {
     return function (req, res) {
-        var message = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
-
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
-
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': messages});
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': []});
     };
 };
 

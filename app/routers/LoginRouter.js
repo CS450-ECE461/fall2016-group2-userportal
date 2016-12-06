@@ -1,4 +1,5 @@
 var passport = require ('passport')
+    , isLoggedIn = require ('../middleware/isLoggedIn')
     ;
 
 module.exports = exports = {
@@ -11,6 +12,7 @@ module.exports = exports = {
     },
 
     '/logout' : {
+        use: isLoggedIn,
         get  : { view   : 'login.pug' },
         post : {
             action : 'LoginController@logout'
