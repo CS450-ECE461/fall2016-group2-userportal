@@ -7,13 +7,13 @@ html(lang="en")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
 
-    body(style='width:100%;height:100%;background-image:url("../assets/background.png")')
+    body(style='width:100%;height:100%;background-image:url("/assets/background.png");')
 
         div.container(style='width:100%;height:100%;')
 
             div(id='topHalf' style='float:top;height:20%;')
                 div(id='mainTitle' style='text-align:center;')
-                    h1 You have now logged in!
+                    h1 Welcome to Hive!
 
             div(id='bottomHalf' style='position:absolute;width:100%;height:80%;left:0%;top:20%;')
 
@@ -55,7 +55,7 @@ html(lang="en")
 
             //brings up contacts pop up
             if(contactsList === 'true')
-                div.container(name='contactsBackground' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-color:#ffffff;')
+                div.container(name='contactsBackground' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-image:url("../assets/background.png");')
                     div.container(name='contactsView' style='position:absolute;width:100%;height:100%;left:0%;top:0%;')
                         div.container(name='contactsHeading' style='position:absolute;width:100%;height:10%;left:0%;top:0%;')
                             div.container(name='contactsPopUpTitle' style='position:absolute;width:95%;height:50%;left:0%;top:25%;')
@@ -80,7 +80,7 @@ html(lang="en")
 
             //brings up compose pop up
             if(composeMessage === 'true')
-                div.container(name='composeBackground' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-color:#ffffff;')
+                div.container(name='composeBackground' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-image:url("../assets/background.png");')
                     div.container(name='composeView' style='position:absolute;width:100%;height:100%;left:0%;top:0%;background-image:url("../assets/background.png")')
 
                         div.container(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:0%;')

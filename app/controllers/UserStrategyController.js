@@ -95,8 +95,8 @@ UserStrategyController.prototype.composeSend = function () {
         var token = req.user;
         var contact = 'danieljpeck93@gmail.com';
         var dt = Date.now()+10000;
-        var title = "Test Title";
-        var message = "Hi there how is your day, what are you up to?";
+        var title = "Demo Day!!!";
+        var message = "Hey that was a pretty cool demo, right??";
 
         var messageData = {
             message: {
@@ -162,6 +162,8 @@ UserStrategyController.prototype.contacts = function () {
                  }
              } else {
                var contacts = resp.body;
+
+               console.log(contacts);
 
                return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
                  'contactsList': 'true', 'messages': [], 'contacts': contacts });
