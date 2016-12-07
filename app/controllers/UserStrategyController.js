@@ -93,7 +93,7 @@ UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
         var token = req.user;
-        var contact = 'danieljpeck93@gmail.com';
+        var contact = 'cotz1995@gmail.com';
         var dt = new Date(Date.now()+10000);
         var title = "Test Title";
         var message = "Hi there how is your day, what are you up to?";
