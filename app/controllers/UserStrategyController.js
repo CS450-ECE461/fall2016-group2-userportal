@@ -1,7 +1,5 @@
 var blueprint = require ('@onehilltech/blueprint'),
-    util      = require ('util'),
-    request   = require('superagent'),
-    passport = require('passport-local')
+    request   = require('superagent')
     ;
 
 function UserStrategyController () {
@@ -36,14 +34,31 @@ UserStrategyController.prototype.home = function () {
 ///
 UserStrategyController.prototype.notifications = function () {
     return function (req, res) {
-        var message = ['Sender', 'Title', 'Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
 
-        messages.push(['rob@iupui.edu','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['bob@iupui.edu','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+        var token = req.user;
 
-        res.render('dashboard.pug', { 'mainObj': 'notifications','notificationVisible': 'true', 'messages': messages });
+        var route = '/v1/messages';
+        if (process.env.NODE_ENV == 'test') {
+            route = '/mock/messageTest';
+        }
+
+        request
+          .get (blueprint.app.configs.apiserver.baseuri + route)
+          .set ('Authorization', 'bearer ' + token)
+          .end (function (err, resp) {
+            if(err) {
+              if (err.status == '400') {
+                //return done (null,false,{message: "Error Sending Message"});
+              }
+            } else {
+              var messages = resp.body.messages;
+              var list = [];
+              for (var i = 0; i < messages.length; i++) {
+                  list[i] = {content: messages[i].content };
+              }
+              res.render('dashboard.pug', { 'mainObj': 'notifications', 'notificationVisible': 'true', 'messages': list });
+            }
+          });
     };
 };
 
@@ -53,15 +68,8 @@ UserStrategyController.prototype.notifications = function () {
 ///
 UserStrategyController.prototype.compose = function () {
     return function (req, res) {
-        var message = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
-
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
-
         return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'true',
-            'contactsList': 'false', 'messages': messages});
+            'contactsList': 'false', 'messages': []});
     };
 };
 
@@ -71,15 +79,9 @@ UserStrategyController.prototype.compose = function () {
 //
 UserStrategyController.prototype.composeClose = function () {
     return function (req, res) {
-        var message = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
-
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
 
         return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-            'contactsList': 'false', 'messages': messages});
+            'contactsList': 'false', 'messages': []});
     };
 };
 
@@ -91,38 +93,35 @@ UserStrategyController.prototype.composeSend = function () {
     return function (req, res) {
 
         var token = req.user;
-        //var contacts = [];
-        //contacts.push("test@iupui.edu");
-        var contact = "test@iupui.edu";
+        var contact = 'danieljpeck93@gmail.com';
         var dt = Date.now()+10000;
-        var title = "Test Title";
-        var message = "Hi there how is your day, what are you up to?";
+        var title = "Demo Day!!!";
+        var message = "Hey that was a pretty cool demo, right??";
 
         var messageData = {
             message: {
-                sender_email: 'sender@testmail.com',
+                sender_email: 'danieljpeck93@gmail.com',
                 receiver_email: contact,
                 received: false,
                 viewed: false,
-                expireAt: dt,
+                //expireAt: dt,
                 title: title,
                 content: message
             }
         };
 
+        var route = '/v1/messages';
+        if (process.env.NODE_ENV == 'test') {
+          route = '/mock/messageTest';
+        }
 
-        var msgResponse;
-
-        //'35.163.81.202:5000/v1/messages'
-        //'localhost:5002/mock/messageTest'
         request
-            .post('localhost:5002/mock/messageTest')
-            .set('Authorization', 'bearer'+token)
+            .post(blueprint.app.configs.apiserver.baseuri + route)
+            .set('Authorization', 'bearer ' + token)
             .send(messageData)
             .end(function (err, resp) {
                 if(err) {
                     if (err.status == '400') {
-                        console.log('we got a 400');
                         //return done (null,false,{message: "Error Sending Message"});
                     }
 
@@ -130,24 +129,12 @@ UserStrategyController.prototype.composeSend = function () {
                         'contactsList': 'false'});
 
                 } else {
-                    msgResponse = resp.body.msgResp;
-                    console.log(msgResponse);
+                  var messages = resp.body;
+
+                  return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'justSent' : 'true', 'composeMessage': 'false', messages: messages,
+                    'contactsList': 'false'});
                 }
             });
-
-
-
-
-        var messageHeaders = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(messageHeaders);
-
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
-
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-            'contactsList': 'false', 'messages': messages});
-
     };
 };
 
@@ -157,22 +144,31 @@ UserStrategyController.prototype.composeSend = function () {
 ///
 UserStrategyController.prototype.contacts = function () {
     return function (req, res) {
-        var contact = ['Name', 'Contact Address', 'Company', 'Business Title'];
-        var contacts = [];
-        contacts.push(contact);
+        var token = req.user;
 
-        contacts.push(['Rob', 'rob@iupui.edu', 'Google', 'Software Engineer']);
-        contacts.push(['Tim', 'tim@iupui.edu', 'Amazon', 'Software Analyst']);
+        var route = '/v1/organizations/users';
+        if (process.env.NODE_ENV == 'test') {
+            route = '/mock/contactTest';
+        }
 
-        var message = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
+        request
+         .get (blueprint.app.configs.apiserver.baseuri + route)
+         .set ('Authorization', 'bearer ' + token)
+         .end (function (err, resp) {
+             if (err) {
+                 if (err.status == '400') {
+                   console.log('we got a 400');
+                   //return done (null,false,{message: "Error Sending Message"});
+                 }
+             } else {
+               var contacts = resp.body;
 
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
+               console.log(contacts);
 
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-            'contactsList': 'true', 'messages': messages, 'contacts': contacts });
+               return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
+                 'contactsList': 'true', 'messages': [], 'contacts': contacts });
+            }
+         });
     };
 };
 
@@ -182,14 +178,7 @@ UserStrategyController.prototype.contacts = function () {
 //
 UserStrategyController.prototype.contactsClose = function () {
     return function (req, res) {
-        var message = ['Sender','Title','Message', 'Time Remaining'];
-        var messages = [];
-        messages.push(message);
-
-        messages.push(['Rob','Welcome','Welcome to Google.','10 hours']);
-        messages.push(['Tim','You are fired.','Bob we are sorry to say, but we have to let you go.','12 hours']);
-
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': messages});
+        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': []});
     };
 };
 
