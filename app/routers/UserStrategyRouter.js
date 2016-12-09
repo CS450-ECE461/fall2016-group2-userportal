@@ -29,12 +29,6 @@ module.exports = exports = {
         post : { action : 'UserStrategyController@compose' }
     },
 
-    '/dashboard/compose/close' : {
-        use: isLoggedIn,
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@composeClose' }
-    },
-
     '/dashboard/compose/send' : {
         use: isLoggedIn,
         get  : { view   : 'dashboard.pug' },
@@ -45,12 +39,5 @@ module.exports = exports = {
         use: isLoggedIn,
         get  : { view   : 'dashboard.pug' },
         post : { action : 'UserStrategyController@contacts' }
-    },
-
-    '/dashboard/contacts/close' : {
-        use: isLoggedIn,
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@contactsClose'}
     }
-
 };
