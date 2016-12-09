@@ -73,19 +73,6 @@ UserStrategyController.prototype.compose = function () {
     };
 };
 
-
-//
-// This closes the message generation view (compose) pop up
-//
-UserStrategyController.prototype.composeClose = function () {
-    return function (req, res) {
-
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-            'contactsList': 'false', 'messages': []});
-    };
-};
-
-
 //
 // This supplies the user with the message sending view
 //
@@ -169,16 +156,6 @@ UserStrategyController.prototype.contacts = function () {
                  'contactsList': 'true', 'messages': [], 'contacts': contacts });
             }
          });
-    };
-};
-
-
-//
-// This closes the contacts view pop up
-//
-UserStrategyController.prototype.contactsClose = function () {
-    return function (req, res) {
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': []});
     };
 };
 
