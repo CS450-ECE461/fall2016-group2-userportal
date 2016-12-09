@@ -2,20 +2,21 @@ doctype html
 html(lang="en")
     head
         title User Dashboard
-        script (src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
+        link(rel="stylesheet", src ="/externalCSS.css")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+        script(type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js")
 
-    body(style='width:100%;height:100%;background-image:url("/assets/background.png");')
+    body(class='full' style='background-image:url("/assets/background.png");')
 
-        div.container(style='width:100%;height:100%;')
+        div.container(class='full')
 
-            div(id='topHalf' style='float:top;height:20%;')
-                div(id='mainTitle' style='text-align:center;')
+            div(id='topFloat')
+                div(id='mainTitle' style='text-align:center;width:80%;')
                     h1 Welcome to Hive!
 
-            div(id='bottomHalf' style='position:absolute;width:100%;height:80%;left:0%;top:20%;')
+            div(id='bottomFloat' style='position:absolute;width:100%;height:80%;left:0%;top:20%;')
 
                 div(id='buttonBar' style='position:absolute;width:10%;height:100%;left:0%;top:0%;border-style:solid;background-color:rgb(49,60,80);')
                     form.form-horizontal(method='post', action='/dashboard/home')
@@ -39,6 +40,8 @@ html(lang="en")
                             button.btn.btn-default(type='submit' style='width:100%;height:100%;left:0%;top:0%;') Logout
 
                 div(id='mainDiv' style='position:absolute;width:90%;height100%;left:10%;top:0%;border-style:solid;')
+                    script.
+                        $('#mainDiv').hide()
 
                     //switches to notifications tab
                     if(mainObj === 'notifications')
@@ -53,9 +56,11 @@ html(lang="en")
 
                     //add other tabs (e.g., calendar) at this level, under mainDiv
 
-            //brings up contacts pop up
             if(contactsList === 'true')
-                div.container(name='contactsBackground' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-image:url("../assets/background.png");')
+                script.
+                    $('#composeTab').hide()
+                    $('#mainDiv').hide()
+                div.container(class='tab' id='contactsList' name='contactsBackground' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-image:url("/assets/background.png");')
                     div.container(name='contactsView' style='position:absolute;width:100%;height:100%;left:0%;top:0%;')
                         div.container(name='contactsHeading' style='position:absolute;width:100%;height:10%;left:0%;top:0%;')
                             div.container(name='contactsPopUpTitle' style='position:absolute;width:95%;height:50%;left:0%;top:25%;')
@@ -78,10 +83,12 @@ html(lang="en")
                                 div.container(name='contactsSelectButton' style='position:absolute;width:20%;height:50%;left:80%;top:25%;')
                                     button.btn.btn-default(type='submit' style='position:absolute;width:100%;height:100%;left:0%;top:0%;') Choose Recipient(s)
 
-            //brings up compose pop up
-            if(composeMessage === 'true')
-                div.container(name='composeBackground' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-image:url("../assets/background.png");')
-                    div.container(name='composeView' style='position:absolute;width:100%;height:100%;left:0%;top:0%;background-image:url("../assets/background.png")')
+            else if (composeMessage === 'true')
+                script.
+                    $('#contactsList').hide()
+                    $('#mainDiv').hide()
+                div.container(class='tab' id='composeTab' name='composeBackground' style='position:absolute;width:80%;height:80%;left:10%;top:10%;border-style:solid;background-image:url("/assets/background.png");')
+                    div.container(name='composeView' style='position:absolute;width:100%;height:100%;left:0%;top:0%;background-image:url("/assets/background.png")')
 
                         div.container(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:0%;')
                             div.container(name='composePopUpTitle' style='position:absolute;width:95%;height:100%;left:0%;top:0%;')
@@ -108,3 +115,10 @@ html(lang="en")
                         div.container(name='composeSend' style='position:absolute;width:100%;height:5%;left:0%;top:95%;')
                             form.form-horizontal(method='post', action='/dashboard/compose/send')
                                 button.btn.btn-default(type='submit' style='position:absolute;width:20%;height:100%;left:80%;top:0%;') Send
+            else if (notificationVisible === 'true')
+                script.
+                    $('#mainDiv').show()
+            else
+                script.
+                    $('#mainDiv').hide()
+

@@ -56,7 +56,7 @@ UserStrategyController.prototype.notifications = function () {
               for (var i = 0; i < messages.length; i++) {
                   list[i] = {content: messages[i].content };
               }
-              res.render('dashboard.pug', { 'mainObj': 'notifications', 'messages': list });
+              res.render('dashboard.pug', { 'mainObj': 'notifications', 'notificationVisible': 'true', 'messages': list });
             }
           });
     };
@@ -131,7 +131,7 @@ UserStrategyController.prototype.composeSend = function () {
                 } else {
                   var messages = resp.body;
 
-                  return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', messages: messages,
+                  return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'justSent' : 'true', 'composeMessage': 'false', messages: messages,
                     'contactsList': 'false'});
                 }
             });
