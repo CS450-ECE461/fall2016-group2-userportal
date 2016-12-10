@@ -2,26 +2,26 @@ var blueprint = require ('@onehilltech/blueprint'),
     request   = require('superagent')
     ;
 
-function UserStrategyController () {
+function DashboardController () {
     blueprint.BaseController.call (this);
 }
 
-blueprint.controller (UserStrategyController);
+blueprint.controller (DashboardController);
 
 
 ///
 /// This method checks the user session before proceeding
 ///
-UserStrategyController.prototype.dashboardInit = function () {
+DashboardController.prototype.init = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', {message: 'Welcome to the dashboard!'});
+        return res.render ('dashboard.pug');
     };
 };
 
 ///
 /// This supplies the user with the messages view as a main tab
 ///
-UserStrategyController.prototype.messages = function () {
+DashboardController.prototype.messages = function () {
     return function (req, res) {
 
         var token = req.user;
@@ -50,7 +50,7 @@ UserStrategyController.prototype.messages = function () {
 //
 // This supplies the user with the message sending view
 //
-UserStrategyController.prototype.send = function () {
+DashboardController.prototype.send = function () {
     return function (req, res) {
 
         var token = req.user;
@@ -98,7 +98,7 @@ UserStrategyController.prototype.send = function () {
 ///
 /// This supplies the user with the contacts view as a pop up
 ///
-UserStrategyController.prototype.contacts = function () {
+DashboardController.prototype.contacts = function () {
     return function (req, res) {
         var token = req.user;
 
@@ -125,4 +125,4 @@ UserStrategyController.prototype.contacts = function () {
     };
 };
 
-module.exports = exports = UserStrategyController;
+module.exports = exports = DashboardController;

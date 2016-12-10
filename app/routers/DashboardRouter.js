@@ -7,22 +7,22 @@ module.exports = exports = {
     '/dashboard' : {
         use: isLoggedIn,
         get  : { view   : 'dashboard.pug'},
-        post : { action : 'UserStrategyController@dashboardInit' }
+        post : { action : 'DashboardController@init' }
     },
 
     '/dashboard/messages' : {
         use: isLoggedIn,
-        get: { action : 'UserStrategyController@messages' }
+        get: { action : 'DashboardController@messages' }
     },
 
     '/dashboard/compose/send' : {
         use: isLoggedIn,
         get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@send' }
+        post : { action : 'DashboardController@send' }
     },
 
     '/dashboard/contacts' : {
         use: isLoggedIn,
-        get: { action : 'UserStrategyController@contacts' }
+        get: { action : 'DashboardController@contacts' }
     }
 };
