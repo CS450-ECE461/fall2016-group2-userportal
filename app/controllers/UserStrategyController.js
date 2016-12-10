@@ -19,17 +19,7 @@ UserStrategyController.prototype.dashboardInit = function () {
 };
 
 ///
-/// This supplies the user with the default view
-///
-UserStrategyController.prototype.home = function () {
-    return function (req, res) {
-        return res.render ('dashboard.pug', { 'list': 'Main view'});
-    };
-};
-
-
-///
-/// This supplies the user with the notifications view as a main tab
+/// This supplies the user with the messages view as a main tab
 ///
 UserStrategyController.prototype.messages = function () {
     return function (req, res) {
@@ -95,15 +85,10 @@ UserStrategyController.prototype.send = function () {
                     if (err.status == '400') {
                         //return done (null,false,{message: "Error Sending Message"});
                     }
-
-                    return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-                        'contactsList': 'false'});
-
                 } else {
-                  var messages = resp.body;
+                  var message = resp.body;
 
-                  return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'justSent' : 'true', 'composeMessage': 'false', messages: messages,
-                    'contactsList': 'false'});
+                  return res.json (message);
                 }
             });
     };
@@ -134,10 +119,7 @@ UserStrategyController.prototype.contacts = function () {
              } else {
                var contacts = resp.body;
 
-               console.log(contacts);
-
-               return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-                 'contactsList': 'true', 'messages': [], 'contacts': contacts });
+               return res.json (contacts);
             }
          });
     };

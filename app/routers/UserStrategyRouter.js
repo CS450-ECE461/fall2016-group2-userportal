@@ -10,13 +10,6 @@ module.exports = exports = {
         post : { action : 'UserStrategyController@dashboardInit' }
     },
 
-
-    '/dashboard/home' : {
-        use: isLoggedIn,
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@home' }
-    },
-
     '/dashboard/messages' : {
         use: isLoggedIn,
         get: { action : 'UserStrategyController@messages' }
