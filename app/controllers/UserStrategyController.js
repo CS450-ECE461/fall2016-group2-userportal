@@ -18,7 +18,6 @@ UserStrategyController.prototype.dashboardInit = function () {
     };
 };
 
-
 ///
 /// This supplies the user with the default view
 ///
@@ -32,7 +31,7 @@ UserStrategyController.prototype.home = function () {
 ///
 /// This supplies the user with the notifications view as a main tab
 ///
-UserStrategyController.prototype.notifications = function () {
+UserStrategyController.prototype.messages = function () {
     return function (req, res) {
 
         var token = req.user;
@@ -52,31 +51,16 @@ UserStrategyController.prototype.notifications = function () {
               }
             } else {
               var messages = resp.body.messages;
-              var list = [];
-              for (var i = 0; i < messages.length; i++) {
-                  list[i] = {content: messages[i].content };
-              }
-              res.render('dashboard.pug', { 'mainObj': 'notifications', 'notificationVisible': 'true', 'messages': list });
+              res.json (messages);
             }
           });
-    };
-};
-
-
-///
-/// This supplies the user with the message generation view (compose) as a pop up
-///
-UserStrategyController.prototype.compose = function () {
-    return function (req, res) {
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'true',
-            'contactsList': 'false', 'messages': []});
     };
 };
 
 //
 // This supplies the user with the message sending view
 //
-UserStrategyController.prototype.composeSend = function () {
+UserStrategyController.prototype.send = function () {
     return function (req, res) {
 
         var token = req.user;

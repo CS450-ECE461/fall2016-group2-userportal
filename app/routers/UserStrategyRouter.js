@@ -17,27 +17,19 @@ module.exports = exports = {
         post : { action : 'UserStrategyController@home' }
     },
 
-    '/dashboard/notifications' : {
+    '/dashboard/messages' : {
         use: isLoggedIn,
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@notifications' }
-    },
-
-    '/dashboard/compose' : {
-        use: isLoggedIn,
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@compose' }
+        get: { action : 'UserStrategyController@messages' }
     },
 
     '/dashboard/compose/send' : {
         use: isLoggedIn,
         get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@composeSend' }
+        post : { action : 'UserStrategyController@send' }
     },
 
     '/dashboard/contacts' : {
         use: isLoggedIn,
-        get  : { view   : 'dashboard.pug' },
-        post : { action : 'UserStrategyController@contacts' }
+        get: { action : 'UserStrategyController@contacts' }
     }
 };
