@@ -1,9 +1,9 @@
 // registers all event listeners and logic for the user portal dashboard
 $(document).ready(function () {
   // initialize the dashboard with none of the tabs showing
-  $('#contactsTab').css ('display', 'none');
-  $('#composeTab').css ('display', 'none');
-  $('#messagesTab').css ('display', 'none');
+  $('#contactsTab').hide();
+  $('#composeTab').hide();
+  $('#messagesTab').hide();
 
   // Event Listener for Home NavBar Button
   $('#home').on('click', function () {
