@@ -2,37 +2,26 @@ var blueprint = require ('@onehilltech/blueprint'),
     request   = require('superagent')
     ;
 
-function UserStrategyController () {
+function DashboardController () {
     blueprint.BaseController.call (this);
 }
 
-blueprint.controller (UserStrategyController);
+blueprint.controller (DashboardController);
 
 
 ///
 /// This method checks the user session before proceeding
 ///
-UserStrategyController.prototype.dashboardInit = function () {
+DashboardController.prototype.init = function () {
     return function (req, res) {
-        return res.render ('dashboard.pug', {message: 'Welcome to the dashboard!'});
+        return res.render ('dashboard.pug');
     };
 };
 
-
 ///
-/// This supplies the user with the default view
+/// This supplies the user with the messages view as a main tab
 ///
-UserStrategyController.prototype.home = function () {
-    return function (req, res) {
-        return res.render ('dashboard.pug', { 'list': 'Main view'});
-    };
-};
-
-
-///
-/// This supplies the user with the notifications view as a main tab
-///
-UserStrategyController.prototype.notifications = function () {
+DashboardController.prototype.messages = function () {
     return function (req, res) {
 
         var token = req.user;
@@ -52,44 +41,16 @@ UserStrategyController.prototype.notifications = function () {
               }
             } else {
               var messages = resp.body.messages;
-              var list = [];
-              for (var i = 0; i < messages.length; i++) {
-                  list[i] = {content: messages[i].content };
-              }
-              res.render('dashboard.pug', { 'mainObj': 'notifications', 'notificationVisible': 'true', 'messages': list });
+              res.json (messages);
             }
           });
     };
 };
 
-
-///
-/// This supplies the user with the message generation view (compose) as a pop up
-///
-UserStrategyController.prototype.compose = function () {
-    return function (req, res) {
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'true',
-            'contactsList': 'false', 'messages': []});
-    };
-};
-
-
-//
-// This closes the message generation view (compose) pop up
-//
-UserStrategyController.prototype.composeClose = function () {
-    return function (req, res) {
-
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-            'contactsList': 'false', 'messages': []});
-    };
-};
-
-
 //
 // This supplies the user with the message sending view
 //
-UserStrategyController.prototype.composeSend = function () {
+DashboardController.prototype.send = function () {
     return function (req, res) {
 
         var token = req.user;
@@ -124,15 +85,10 @@ UserStrategyController.prototype.composeSend = function () {
                     if (err.status == '400') {
                         //return done (null,false,{message: "Error Sending Message"});
                     }
-
-                    return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-                        'contactsList': 'false'});
-
                 } else {
-                  var messages = resp.body;
+                  var message = resp.body;
 
-                  return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'justSent' : 'true', 'composeMessage': 'false', messages: messages,
-                    'contactsList': 'false'});
+                  return res.json (message);
                 }
             });
     };
@@ -142,7 +98,7 @@ UserStrategyController.prototype.composeSend = function () {
 ///
 /// This supplies the user with the contacts view as a pop up
 ///
-UserStrategyController.prototype.contacts = function () {
+DashboardController.prototype.contacts = function () {
     return function (req, res) {
         var token = req.user;
 
@@ -163,23 +119,10 @@ UserStrategyController.prototype.contacts = function () {
              } else {
                var contacts = resp.body;
 
-               console.log(contacts);
-
-               return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false',
-                 'contactsList': 'true', 'messages': [], 'contacts': contacts });
+               return res.json (contacts);
             }
          });
     };
 };
 
-
-//
-// This closes the contacts view pop up
-//
-UserStrategyController.prototype.contactsClose = function () {
-    return function (req, res) {
-        return res.render ('dashboard.pug', { 'mainObj': 'notifications', 'composeMessage': 'false', 'contactsList': 'false', 'messages': []});
-    };
-};
-
-module.exports = exports = UserStrategyController;
+module.exports = exports = DashboardController;
