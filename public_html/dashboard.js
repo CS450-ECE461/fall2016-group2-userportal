@@ -21,10 +21,10 @@ $(document).ready(function () {
 
     // if the message tab is not currently displayed fetch the data and display it
     if ($('#messagesTab').css('display') == 'none') {
-      $.getJSON("/dashboard/messages", function (data) {
-        $("#messagesTable").append("<tr> <th> Sender </th> <th> Receiver </th> <th> Content </th> </tr>");
-        $.each(data, function (index, message) {
-          $("#messagesTable").append("<tr id='" + index + "'><td>" + message.sender_email + "</td><td>" + message.receiver_email + "</td><td>" + message.content + "</td></tr>");
+      $.getJSON("/dashboard/messages", function (messages) {
+        $("#messagesTable").append ("<tr> <th> Sender </th> <th> Receiver </th> <th> Content </th> </tr>");
+        $.each (messages, function (index, message) {
+          $("#messagesTable").append ("<tr id='" + index + "'><td>" + message.sender_email + "</td><td>" + message.receiver_email + "</td><td>" + message.content + "</td></tr>");
         });
       });
 
@@ -40,7 +40,7 @@ $(document).ready(function () {
   });
 
   // Event Listener for the close compose message tab
-  $('#closeComposeButton').on('click', function () {
+  $('#closeComposeButton').on ('click', function () {
     $('#composeTab').hide();
   });
 
@@ -61,10 +61,10 @@ $(document).ready(function () {
     $('.table:not(#contactsTable)').empty();
 
     if ($('#contactsTab').css('display') == 'none') {
-      $.getJSON("/dashboard/contacts", function (data) {
+      $.getJSON("/dashboard/contacts", function (contacts) {
         $("#contactsTable").append("<tr> <th> UserName </th> <th> Email </th> <th> Job Title </th> </tr>");
-        $.each(data, function (index, user) {
-          $("#contactsTable").append("<tr id='" + index + "'><td>" + user.username + "</td><td>" + user.email + "</td><td>" + user.job_title + "</td></tr>");
+        $.each(contacts, function (index, contact) {
+          $("#contactsTable").append("<tr id='" + index + "'><td>" + contact.username + "</td><td>" + contact.email + "</td><td>" + contact.job_title + "</td></tr>");
         });
       });
 
