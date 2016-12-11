@@ -46,21 +46,23 @@ html(lang="en")
 
                 // Messages Tab
                 div.tab#messagesTab
+                    button#test(class='btn btn-info btn-log' data-toggle="modal" data-target="#contactsModal") Open Modal
                     table.table#messagesTable
 
-                // Contacts Tab
-                div.tab.pop-up#contactsTab
-                    div.pop-up-contents#contactsView
-                        div#contactsHeading(style='position:absolute;width:100%;height:10%;left:0%;top:0%;')
-                            div(name='contactsPopUpTitle' style='position:absolute;width:95%;height:50%;left:0%;top:25%;')
-                                span My Contacts
-                                button.btn.btn-default#closeContactsButton(style='position:absolute;width:height;height:100%;right:0%;top:0%;') X
+                // Contacts Modal
+                div.modal#contactsModal(role='dialog')
+                    div(class='modal-dialog')
+                        div(class='modal-content')
+                            div(class='modal-header')
+                                button(type='button' class='close' data-dismiss="modal") &times;
+                                h4(class='modal-title') My Contacts
+                            div(class='modal-body')
+                                p test content
+                            div(class='modal-footer')
+                                button(type='button' class='btn btn-default' data-dismiss="modal") Close
 
-                        div(name='tableDiv' style='position:absolute;width:100%;height:80%;left:0%;top:10%;')
-                            table.table#contactsTable
-
-                // Compose Message Tab
-                div.tab.pop-up#composeTab
+                // Compose Message Modal
+                div.tab.pop-up#composeModal
                     div.pop-up-contents#composeView
 
                         div#composeTopBar
