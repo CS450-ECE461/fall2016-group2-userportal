@@ -117,7 +117,6 @@ DashboardController.prototype.contacts = function () {
                  }
              } else {
                var contacts = resp.body;
-			   console.log("test");
                return res.json (contacts);
             }
          });
