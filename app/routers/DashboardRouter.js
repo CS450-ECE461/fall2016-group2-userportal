@@ -24,5 +24,10 @@ module.exports = exports = {
     '/dashboard/contacts' : {
         use: isLoggedIn,
         get: { action : 'DashboardController@contacts' }
-    }
+    },
+    
+    '/dashboard/userInfo' : {
+		use: isLoggedIn,
+		get: {action : 'DashboardController@userInfo' }
+	}
 };
