@@ -53,15 +53,15 @@ DashboardController.prototype.send = function () {
     return function (req, res) {
 
         var token = req.user;
-        var contact = 'danieljpeck93@gmail.com';
+        var contact = 'Djpeck';
         var dt = Date.now()+10000;
         var title = "Demo Day!!!";
         var message = "Hey that was a pretty cool demo, right??";
 
         var messageData = {
             message: {
-                sender_email: 'danieljpeck93@gmail.com',
-                receiver_email: contact,
+                sender: 'Lrthayer',
+                receiver: contact,
                 received: false,
                 viewed: false,
                 //expireAt: dt,

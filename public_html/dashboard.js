@@ -34,7 +34,7 @@ $(document).ready(function () {
       $.getJSON("/dashboard/messages", function (messages) {
         $("#messagesTable").append ("<tr> <th> Sender </th> <th> Receiver </th> <th> Content </th> </tr>");
         $.each (messages, function (index, message) {
-          $("#messagesTable").append ("<tr id='" + index + "'><td>" + message.sender_email + "</td><td>" + message.receiver_email + "</td><td>" + message.content + "</td></tr>");
+          $("#messagesTable").append ("<tr id='" + index + "'><td>" + message.sender + "</td><td>" + message.receiver + "</td><td>" + message.content + "</td></tr>");
         });
       });
 
