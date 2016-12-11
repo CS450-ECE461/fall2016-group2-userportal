@@ -67,7 +67,7 @@ $(document).ready(function () {
 
   // Event Listener for Contacts NavBar button
   $('.contacts').on('click', function () {
-    $('.tab:not(#contactsTab)').hide();
+    //$('.tab:not(#contactsTab)').hide();
     $('.table:not(#contactsTable)').empty();
 
     if ($('#contactsTab').css('display') == 'none') {
@@ -78,7 +78,7 @@ $(document).ready(function () {
         });
       });
 
-      $('#contactsTab').show();
+      //$('#contactsTab').show();
     }
   });
 
