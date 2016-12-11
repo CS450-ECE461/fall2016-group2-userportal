@@ -10,9 +10,9 @@ body {
 }
 
 #navBar {
-	position:absolute;
-	width:10%;
+	float:left;
 	height:100%;
+	max-width:100px;
 	border-style:solid;
 	background-color:rgb(49,60,80);
 }
