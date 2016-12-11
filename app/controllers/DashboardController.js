@@ -117,6 +117,7 @@ DashboardController.prototype.contacts = function () {
                  }
              } else {
                var contacts = resp.body;
+			   console.log("test");
                return res.json (contacts);
             }
          });
@@ -140,8 +141,11 @@ DashboardController.prototype.userInfo = function () {
                    console.log('we got a 400');
                    //return done (null,false,{message: "Error Sending Message"});
                  }
+                 else
+					console.log(err.status);
              } else {
                var userInfo = resp.body;
+
                return res.json (userInfo);
             }
          });
