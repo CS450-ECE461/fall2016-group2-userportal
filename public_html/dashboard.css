@@ -1,9 +1,15 @@
+body {
+	background-image:url("/assets/background.png");
+}
+
 .header {
 	float:top;
 	height:20%;
+	width:80%;
+	text-align:center;
 }
 
-.navBar {
+#navBar {
 	position:absolute;
 	width:10%;
 	height:100%;
@@ -19,6 +25,121 @@
 }
 
 li {
-	list-style-type: none;
+	list-style-type:none;
 }
-    
+
+.navBarItem {
+	position:absolute;
+	width:100%;
+	height:20%;
+	left:0%;
+}
+
+.navBarInput {
+	height:100%;
+	width:100%;
+}
+
+#homeItem {
+	top:0%;
+}
+
+#home {
+	src:url("/assets/hiveIcon.png");
+}
+
+#messagesItem {
+	top:20%;
+}
+
+#messages {
+
+}
+
+#composeItem {
+	top:40%;
+}
+
+#compose {
+
+}
+
+#contactsItem {
+	top:60%;
+}
+
+#contacts {
+
+}
+
+#logoutForm {
+	top:80%;
+}
+
+#logout {
+
+}
+
+#mainWindow {
+	position:absolute;
+	width:90%;
+	height:100%;
+	left:10%;
+	top:0%;
+}
+
+.table-striped {
+	width:100%;
+}
+
+.tab {
+	position:absolute;
+}
+
+.pop-up {
+	width:80%;
+	height:80%;
+	left:10%;
+	top:10%;
+	border-style:solid;
+}
+
+.pop-up-contents {
+	position:absolute;
+	width:100%;
+	height:100%;
+	left:0%;
+	top:0%;
+}
+
+#messagesTab {
+
+}
+
+#messagesTable {
+
+}
+
+#composeTopBar {
+	position:absolute;
+	width:100%;
+	height:20px;
+	left:0%;
+	top:0%;
+}
+
+#composeHeading {
+	position:absolute;
+	width:70%;
+	height:100%;
+	left:0%;
+	top:0%;
+}
+
+#closeComposeButton {
+	width:20px;
+	height:20px;
+	float:right;
+	float:top;
+	text-align:center;
+}
