@@ -8,6 +8,7 @@ $(document).ready(function () {
   // Event Listener for Home NavBar Button
   $('#home').on('click', function () {
     $('.tab').hide();
+    $('#homeTab').show();
     $('.table').empty();
   });
 
