@@ -23,7 +23,6 @@ DashboardController.prototype.init = function () {
 ///
 DashboardController.prototype.messages = function () {
     return function (req, res) {
-
         var token = req.user;
 
         var route = '/v1/messages';
@@ -118,8 +117,32 @@ DashboardController.prototype.contacts = function () {
                  }
              } else {
                var contacts = resp.body;
-
                return res.json (contacts);
+            }
+         });
+    };
+};
+
+DashboardController.prototype.userInfo = function () {
+    return function (req, res) {
+        var token = req.user;
+        var route = '/v1/users/profile';
+        if (process.env.NODE_ENV == 'test') {
+            route = '/mock/userInfo';
+        }
+
+        request
+         .get (blueprint.app.configs.apiserver.baseuri + route)
+         .set ('Authorization', 'bearer ' + token)
+         .end (function (err, resp) {
+             if (err) {
+                 if (err.status == '400') {
+                   console.log('we got a 400');
+                   //return done (null,false,{message: "Error Sending Message"});
+                 }
+             } else {
+               var userInfo = resp.body;
+               return res.json (userInfo);
             }
          });
     };

@@ -10,6 +10,15 @@ $(document).ready(function () {
     $('.tab').hide();
     $('#homeTab').show();
     $('.table').empty();
+    
+    $.getJSON("/dashboard/userInfo", function (userInfo) {
+		$('#userName').html("Username: " + userInfo.username);
+		$('#userEmail').html("Email: " + userInfo.email);
+		$('#userTitle').html("Title: " +userInfo.job_title);
+		$('#homeTitle').html("Profile Info");
+    });
+    
+    $('#homeTab').show();
   });
 
   // Event Listener for Message NavBar Button
