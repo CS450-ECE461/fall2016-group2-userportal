@@ -70,7 +70,9 @@ $(document).ready(function () {
     //$('.tab:not(#contactsTab)').hide();
     $('.table:not(#contactsTable)').empty();
 
-    if ($('#contactsTab').css('display') == 'none') {
+    alert ('outside');
+    if ($('#contactsModal').css('display') == 'none') {
+      alert ('inside');
       $.getJSON("/dashboard/contacts", function (contacts) {
         $("#contactsTable").append("<tr> <th> UserName </th> <th> Email </th> <th> Job Title </th> </tr>");
         $.each(contacts, function (index, contact) {
