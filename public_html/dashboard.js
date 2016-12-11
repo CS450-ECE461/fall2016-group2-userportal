@@ -11,8 +11,9 @@ $(document).ready(function () {
     $('.table').empty();
     
     $.getJSON("/dashboard/userInfo", function (userInfo) {
-		console.log("test: " + userInfo);
-        $("#header").append (userInfo.username);
+		console.log("test: " + userInfo.username);
+        $("#homeTable").append("<tr id='" + 0 + "'><td>" + userInfo.username + "</td><td>" + userInfo.email + "</td><td>" + userInfo.job_title + "</td></tr>");
+        
     });
   });
 
@@ -27,7 +28,6 @@ $(document).ready(function () {
     // if the message tab is not currently displayed fetch the data and display it
     if ($('#messagesTab').css('display') == 'none') {
       $.getJSON("/dashboard/messages", function (messages) {
-        console.log("??????");
         $("#messagesTable").append ("<tr> <th> Sender </th> <th> Receiver </th> <th> Content </th> </tr>");
         $.each (messages, function (index, message) {
           $("#messagesTable").append ("<tr id='" + index + "'><td>" + message.sender_email + "</td><td>" + message.receiver_email + "</td><td>" + message.content + "</td></tr>");
