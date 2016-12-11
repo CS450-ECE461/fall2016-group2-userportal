@@ -11,10 +11,13 @@ $(document).ready(function () {
     $('.table').empty();
     
     $.getJSON("/dashboard/userInfo", function (userInfo) {
-		console.log("test: " + userInfo.username);
-        $("#homeTable").append("<tr id='" + 0 + "'><td>" + userInfo.username + "</td><td>" + userInfo.email + "</td><td>" + userInfo.job_title + "</td></tr>");
-        
+		$('#userName').html("username: " + userInfo.username);
+		$('#userEmail').html("email: " + userInfo.email);
+		$('#userTitle').html("title: " +userInfo.job_title);
+		$('#homeTitle').html("Profile Info");
     });
+    
+    $('#homeTab').show();
   });
 
   // Event Listener for Message NavBar Button
