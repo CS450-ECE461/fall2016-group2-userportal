@@ -11,9 +11,9 @@ $(document).ready(function () {
     $('.table').empty();
     
     $.getJSON("/dashboard/userInfo", function (userInfo) {
-		$('#userName').html("username: " + userInfo.username);
-		$('#userEmail').html("email: " + userInfo.email);
-		$('#userTitle').html("title: " +userInfo.job_title);
+		$('#userName').html("Username: " + userInfo.username);
+		$('#userEmail').html("Email: " + userInfo.email);
+		$('#userTitle').html("Title: " +userInfo.job_title);
 		$('#homeTitle').html("Profile Info");
     });
     
