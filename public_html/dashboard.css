@@ -11,8 +11,7 @@ body {
 
 #navBar {
 	position:absolute;
-	width:15%;
-	min-width:100px;
+	width:10%;
 	height:100%;
 	left:0%;
 	top:0%;
@@ -83,9 +82,9 @@ li {
 
 #mainWindow {
 	position:absolute;
-	width:85%;
+	width:90%;
 	height:100%;
-	left:15%;
+	left:10%;
 	top:0%;
 }
 
