@@ -59,7 +59,6 @@ DashboardController.prototype.send = function () {
 
         var messageData = {
             message: {
-                sender: 'Lrthayer',
                 receiver: contact,
                 received: false,
                 viewed: false,
