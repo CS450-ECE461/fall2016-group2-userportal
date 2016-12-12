@@ -44,14 +44,14 @@ $(document).ready(function () {
 
   // Event Listener for send message button
   $('#send').on ('click', function () {
-	  var messageText = $('#messageText').val();
-	  var recipient = $('#userRecipient').val();
-	  var messageTitle = $('#messageTitle').val();
-	  var data = {
-		  content: messageText,
-		  title: messageTitle,
-		  user: recipient
-	  };
+      var messageText = $('#messageText').val();
+      var recipient = $('#userRecipient').val();
+      var messageTitle = $('#messageTitle').val();
+      var data = {
+          content: messageText,
+          title: messageTitle,
+          user: recipient
+      };
     $.post ('/dashboard/compose/send', data, function (message) {
       console.log (messageText);
       $('.close').trigger('click');

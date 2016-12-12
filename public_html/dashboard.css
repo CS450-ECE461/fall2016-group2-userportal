@@ -100,18 +100,27 @@ li {
 	background-image:url("/assets/backgroundCropped.png");
 }
 
-#composeSubject {
-	height:30px;
-	width:100%;
+#userRecipient {
+	margin-top:6px;
+	margin-bottom:6px;
 }
 
-#composeDetails {
+#messageTitle {
+	height:30px;
+	width:100%;
+	margin-top:6px;
+	margin-bottom:6px;
+}
+
+#messageText {
 	min-height:300px;
 	width:100%;
+	margin-top:6px;
+	margin-bottom:6px;
 }
 
 #to {
-	margin-bottom:12px;
+	margin-bottom:6px;
 }
 
 .nextItem {
