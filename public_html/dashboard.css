@@ -96,14 +96,16 @@ li {
 
 }
 
-textarea {
-	background-color:#f5e9e5;
+.modal-content {
+	background-image:url("/assets/backgroundCropped.png");
 }
 
 #composeSubject {
-
+	height:24px;
+	width:100%;
 }
 
 #composeDetails {
-
+	min-height:200px;
+	width:100%;
 }
