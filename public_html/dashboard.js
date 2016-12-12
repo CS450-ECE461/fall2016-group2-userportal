@@ -60,7 +60,7 @@ $(document).ready(function () {
 	  var recipient = $('#userRecipient').val();
 	  var messageTitle = $('#messageTitle').val();
 	  var data = {
-		  val: messageText,
+		  content: messageText,
 		  title: messageTitle,
 		  user: recipient
 	};
