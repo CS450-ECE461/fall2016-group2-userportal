@@ -51,7 +51,6 @@ DashboardController.prototype.messages = function () {
 //
 DashboardController.prototype.send = function () {
     return function (req, res) {
-		console.log(req.user.body);
         var token = req.user;
         var contact = req.body.user;
         var dt = Date.now()+10000;
