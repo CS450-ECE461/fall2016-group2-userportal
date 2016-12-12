@@ -32,9 +32,21 @@ $(document).ready(function () {
     // if the message tab is not currently displayed fetch the data and display it
     if ($('#messagesTab').css('display') == 'none') {
       $.getJSON("/dashboard/messages", function (messages) {
-        $("#messagesTable").append ("<thead><tr><th> Sender </th><th> Receiver </th><th> Content </th></tr></thead>");
+        $("#messagesTable").append ("<thead>" +
+                                      "<tr>" +
+                                        "<th> Sender </th>" +
+                                        "<th> Receiver </th>" +
+                                        "<th> Title </th>" +
+                                        "<th> Content </th>" +
+                                      "</tr>" +
+                                    "</thead>");
         $.each (messages, function (index, message) {
-          $("#messagesTable").append ("<tr id='" + index + "'><td>" + message.sender + "</td><td>" + message.receiver + "</td><td>" + message.content + "</td></tr>");
+          $("#messagesTable").append ("<tr id='" + index + "'>" +
+                                        "<td>" + message.sender + "</td>" +
+                                        "<td>" + message.receiver + "</td>" +
+                                        "<td>" + message.title + "</td>" +
+                                        "<td>" + message.content + "</td>" +
+                                      "</tr>");
         });
       });
 
