@@ -25,7 +25,7 @@ DashboardController.prototype.messages = function () {
     return function (req, res) {
         var token = req.user;
 
-        var route = '/v1/messages';
+        var route = '/v1/messages/received';
         if (process.env.NODE_ENV == 'test') {
             route = '/mock/messageTest';
         }
