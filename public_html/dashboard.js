@@ -32,7 +32,7 @@ $(document).ready(function () {
     // if the message tab is not currently displayed fetch the data and display it
     if ($('#messagesTab').css('display') == 'none') {
       $.getJSON("/dashboard/messages", function (messages) {
-        $("#messagesTable").append ("<tr> <th> Sender </th> <th> Receiver </th> <th> Content </th> </tr>");
+        $("#messagesTable").append ("<thead><tr><th> Sender </th><th> Receiver </th><th> Content </th></tr></thead>");
         $.each (messages, function (index, message) {
           $("#messagesTable").append ("<tr id='" + index + "'><td>" + message.sender + "</td><td>" + message.receiver + "</td><td>" + message.content + "</td></tr>");
         });
@@ -42,56 +42,36 @@ $(document).ready(function () {
     }
   });
 
-  // Event Listener for Compose Message NavBar Button
-  $('#compose').on('click', function () {
-    $('.tab:not(#composeTab)').hide();
-    $('.table').empty();
-    $('#composeTab').show();
-  });
-
-  // Event Listener for the close compose message tab
-  $('#closeComposeButton').on ('click', function () {
-    $('#composeTab').hide();
-  });
-
   // Event Listener for send message button
   $('#send').on ('click', function () {
-	  var messageText = $('#messageText').val();
-	  var recipient = $('#userRecipient').val();
-	  var messageTitle = $('#messageTitle').val();
-	  var data = {
-		  content: messageText,
-		  title: messageTitle,
-		  user: recipient
-	};
+      var messageText = $('#messageText').val();
+      var recipient = $('#userRecipient').val();
+      var messageTitle = $('#messageTitle').val();
+      var data = {
+          content: messageText,
+          title: messageTitle,
+          user: recipient
+      };
     $.post ('/dashboard/compose/send', data, function (message) {
       console.log (messageText);
-      $('#closeComposeButton').trigger('click');
+      $('.close').trigger('click');
     })
     .fail(function (err) {
       console.log (err);
     });
+    $('.close').trigger ('click');
   });
 
   // Event Listener for Contacts NavBar button
   $('.contacts').on('click', function () {
-    $('.tab:not(#contactsTab)').hide();
-    $('.table:not(#contactsTable)').empty();
+    // empty the tables before loading the new data
+    $('#contactsTable').empty();
 
-    if ($('#contactsTab').css('display') == 'none') {
-      $.getJSON("/dashboard/contacts", function (contacts) {
-        $("#contactsTable").append("<tr> <th> UserName </th> <th> Email </th> <th> Job Title </th> </tr>");
-        $.each(contacts, function (index, contact) {
-          $("#contactsTable").append("<tr id='" + index + "'><td>" + contact.username + "</td><td>" + contact.email + "</td><td>" + contact.job_title + "</td></tr>");
-        });
+    $.getJSON("/dashboard/contacts", function (contacts) {
+      $("#contactsTable").append("<thead><tr><th> Username </th><th> Email </th><th> Job Title </th></tr></thead>");
+      $.each(contacts, function (index, contact) {
+        $("#contactsTable").append("<tr id='" + index + "'><td>" + contact.username + "</td><td>" + contact.email + "</td><td>" + contact.job_title + "</td></tr>");
       });
-
-      $('#contactsTab').show();
-    }
-  });
-
-  // Event Listener for the close contacts tab
-  $('#closeContactsButton').on ('click', function () {
-    $('#contactsTab').hide();
+    });
   });
 });

@@ -1,5 +1,5 @@
 body {
-	background-image:url("/assets/background.png");
+	background-image:url("/assets/backgroundCropped.png");
 }
 
 .header {
@@ -44,40 +44,19 @@ li {
 	top:0%;
 }
 
-#home {
-	src:url("/assets/hiveIcon.png");
-}
-
 #messagesItem {
 	top:20%;
 }
-
-#messages {
-
-}
-
 #composeItem {
 	top:40%;
-}
-
-#compose {
-
 }
 
 #contactsItem {
 	top:60%;
 }
 
-#contacts {
-
-}
-
 #logoutForm {
 	top:80%;
-}
-
-#logout {
-
 }
 
 #mainWindow {
@@ -88,58 +67,30 @@ li {
 	top:0%;
 }
 
-.table-striped {
-	width:100%;
-}
-
 .tab {
 	position:absolute;
 }
 
-.pop-up {
-	width:80%;
-	height:80%;
-	left:10%;
-	top:10%;
-	border-style:solid;
+.modal-content {
+	background-image:url("/assets/backgroundCropped.png");
 }
 
-.pop-up-contents {
-	position:absolute;
+.form-control {
+	margin-top:6px;
+	margin-bottom:6px;
+}
+
+#messageTitle {
 	width:100%;
-	height:100%;
-	left:0%;
-	top:0%;
 }
 
-#messagesTab {
-
-}
-
-#messagesTable {
-
-}
-
-#composeTopBar {
-	position:absolute;
+#messageText {
+	min-height:200px;
 	width:100%;
-	height:20px;
-	left:0%;
-	top:0%;
+	padding:12px;
 }
 
-#composeHeading {
-	position:absolute;
-	width:70%;
-	height:100%;
-	left:0%;
-	top:0%;
-}
-
-#closeComposeButton {
-	width:20px;
-	height:20px;
-	float:right;
-	float:top;
-	text-align:center;
+.nextItem {
+	margin-top:12px;
+	font-size:14px;
 }

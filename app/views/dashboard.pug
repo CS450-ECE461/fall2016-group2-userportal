@@ -5,8 +5,8 @@ html(lang="en")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
         link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
         link(rel="stylesheet", href ="/dashboard.css")
-        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
         script(type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
 
         // JavaScript Event Listener Logic
         script(type='text/javascript' src='/dashboard.js')
@@ -25,10 +25,10 @@ html(lang="en")
                     input.navBarInput#messages(type='image' src="/assets/notifications.png" alt='Submit')
 
                 li.navBarItem#composeItem
-                    input.navBarInput#compose(type='image' src="/assets/sent.png" alt='Submit')
+                    input.navBarInput#compose(type='image' src="/assets/sent.png" alt='Submit' data-toggle="modal" data-target="#composeModal")
 
                 li.navBarItem#contactsItem
-                    input.navBarInput.contacts#contacts(type ='image' src="/assets/Contacts.png" alt='Submit')
+                    input.navBarInput.contacts(type ='image' src="/assets/Contacts.png" alt='Submit' data-toggle="modal" data-target="#contactsModal")
 
                 form.navBarItem.form-horizontal#logoutForm(method='post', action='/logout')
                     input.navBarInput#logout(type='image' src="/assets/reply.png" alt='Submit')
@@ -48,40 +48,30 @@ html(lang="en")
                 div.tab#messagesTab
                     table.table#messagesTable
 
-                // Contacts Tab
-                div.tab.pop-up#contactsTab
-                    div.pop-up-contents#contactsView
-                        div#contactsHeading(style='position:absolute;width:100%;height:10%;left:0%;top:0%;')
-                            div(name='contactsPopUpTitle' style='position:absolute;width:95%;height:50%;left:0%;top:25%;')
-                                span My Contacts
-                                button.btn.btn-default#closeContactsButton(style='position:absolute;width:height;height:100%;right:0%;top:0%;') X
-
-                        div(name='tableDiv' style='position:absolute;width:100%;height:80%;left:0%;top:10%;')
+            // Contacts Modal
+            div.modal#contactsModal(role='dialog')
+                div.modal-dialog.modal-lg
+                    div.modal-content
+                        div.modal-header
+                            button.close(type='button' data-dismiss="modal") &times;
+                            h4.modal-title My Contacts
+                        div.modal-body
                             table.table#contactsTable
+                        div.modal-footer
+                            button.btn.btn-default(type='button' data-dismiss='modal' data-toggle='modal' data-target='#composeModal') Compose
+                            button.btn.btn-default(type='button' data-dismiss='modal') Close
 
-                // Compose Message Tab
-                div.tab.pop-up#composeTab
-                    div.pop-up-contents#composeView
-
-                        div#composeTopBar
-                            span#composeHeading New Message
-                            button.btn.btn-default#closeComposeButton X
-
-                        div#composeTitle(style='position:absolute;width:100%;height:100%;left:0%;top:5%;')
-                            span Title
-
-                        div(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:10%;')
-                            textarea#messageTitle(style='position:absolute;width:96%;height:100%;left:2%;top:0%;background-color:#f5e9e5;')
-
-                        div#composeContacts(style='position:absolute;width:100%;height:5%;left:0%;top:15%;')
-                            input#userRecipient(type='text' value='recipients username')
-                            div(name='composeContactsButton' style='position:absolute;width:20%;height:100%;left:80%;top:0%;')
-                                button.btn.btn-default.contacts(type='submit' style='position:absolute;width:100%;height:100%;left:0%;top:0%;') Select Recipient(s)
-
-                        div#composeMessage(style='position:absolute;width:100%;height:75%;left:0%;top:20%;')
-                            div(name='composeHeading' style='position:absolute;width:100%;height:5%;left:0%;top:0%;')
-                                span Message
-                            textarea#messageText(style='position:absolute;width:96%;height:95%;left:2%;top:5%;background-color:#f5e9e5;')
-
-                        div#composeSend(style='position:absolute;width:100%;height:5%;left:0%;top:95%;')
-                            button.btn.btn-default#send(type='submit' style='position:absolute;width:20%;height:100%;left:80%;top:0%;') Send
+            // Compose Message Modal
+            div.modal#composeModal(role='dialog')
+                div.modal-dialog.modal-lg
+                    div.modal-content
+                        div.modal-header
+                            button.close(type='button' class='close' data-dismiss="modal") &times;
+                            h4.modal-title New Message
+                        div.modal-body
+                            input.form-control#userRecipient(type='text' placeholder='recipient')
+                            input.form-control#messageTitle(placeholder='subject')
+                            textarea#messageText(placeholder='message')
+                        div.modal-footer
+                            button.btn.btn-default.contacts#to(type='button' data-dismiss='modal' data-toggle='modal' data-target='#contactsModal') Contacts
+                            button.btn.btn-default#send(type='button') Send
