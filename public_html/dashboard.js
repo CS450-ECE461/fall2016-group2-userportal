@@ -56,8 +56,16 @@ $(document).ready(function () {
 
   // Event Listener for send message button
   $('#send').on ('click', function () {
-    $.post ('/dashboard/compose/send', {}, function (message) {
-      console.log (message);
+	  var messageText = $('#messageText').val();
+	  var recipient = $('userRecipient').val();
+	  var messageTitle = $('composeTitle').val();
+	  var data = {
+		  val: messageText,
+		  title: messageTitle,
+		  user: recipient,
+	}
+    $.post ('/dashboard/compose/send', data, function (message) {
+      console.log (messageText);
       $('#closeComposeButton').trigger('click');
     })
     .fail(function (err) {
