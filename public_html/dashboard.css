@@ -61,6 +61,7 @@ li {
 
 #mainWindow {
 	position:absolute;
+	padding-left:4em;
 	width:90%;
 	height:100%;
 	left:10%;
