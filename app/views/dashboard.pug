@@ -28,7 +28,7 @@ html(lang="en")
                     input.navBarInput#compose(type='image' src="/assets/sent.png" alt='Submit' data-toggle="modal" data-target="#composeModal")
 
                 li.navBarItem#contactsItem
-                    input.navBarInput.contacts#contacts(type ='image' src="/assets/Contacts.png" alt='Submit' data-toggle="modal" data-target="#contactsModal")
+                    input.navBarInput.contacts(type ='image' src="/assets/Contacts.png" alt='Submit' data-toggle="modal" data-target="#contactsModal")
 
                 form.navBarItem.form-horizontal#logoutForm(method='post', action='/logout')
                     input.navBarInput#logout(type='image' src="/assets/reply.png" alt='Submit')
@@ -74,5 +74,5 @@ html(lang="en")
                             p Details
                             textarea#composeDetails
                         div.modal-footer
-                            button.btn.btn-default(type='button' data-dismiss='modal' data-toggle='modal' data-target='#contactsModal') Find Recipient(s)
-                            button.btn.btn-default(type='button') Send
+                            button.btn.btn-default.contacts(type='button' data-dismiss='modal' data-toggle='modal' data-target='#contactsModal') Find Recipient(s)
+                            button.btn.btn-default#send(type='button') Send
