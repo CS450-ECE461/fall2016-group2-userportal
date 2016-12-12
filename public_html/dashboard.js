@@ -58,12 +58,12 @@ $(document).ready(function () {
   $('#send').on ('click', function () {
 	  var messageText = $('#messageText').val();
 	  var recipient = $('#userRecipient').val();
-	  var messageTitle = $('#composeTitle').val();
+	  var messageTitle = $('#messageTitle').val();
 	  var data = {
 		  val: messageText,
 		  title: messageTitle,
 		  user: recipient
-	}
+	};
     $.post ('/dashboard/compose/send', data, function (message) {
       console.log (messageText);
       $('#closeComposeButton').trigger('click');
