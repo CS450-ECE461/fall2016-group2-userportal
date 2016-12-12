@@ -56,7 +56,7 @@ $(document).ready(function () {
   // Event Listener for Contacts NavBar button
   $('.contacts').on('click', function () {
     // empty the tables before loading the new data
-    $('.table').empty();
+    $('#contactsTable').empty();
 
     $.getJSON("/dashboard/contacts", function (contacts) {
       $("#contactsTable").append("<thead><tr><th> Username </th><th> Email </th><th> Job Title </th></tr></thead>");
