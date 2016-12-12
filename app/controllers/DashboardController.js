@@ -55,7 +55,7 @@ DashboardController.prototype.send = function () {
         var contact = req.body.user;
         var dt = Date.now()+10000;
         var title = req.body.title;
-        var message = req.body.val;
+        var message = req.body.content;
 
         var messageData = {
             message: {
