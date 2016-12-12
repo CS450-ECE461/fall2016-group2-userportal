@@ -51,12 +51,12 @@ DashboardController.prototype.messages = function () {
 //
 DashboardController.prototype.send = function () {
     return function (req, res) {
-
+		console.log(req.user.body);
         var token = req.user;
-        var contact = 'Djpeck';
+        var contact = req.body.user;
         var dt = Date.now()+10000;
-        var title = "Demo Day!!!";
-        var message = "Hey that was a pretty cool demo, right??";
+        var title = req.body.title;
+        var message = req.body.val;
 
         var messageData = {
             message: {
