@@ -1,5 +1,5 @@
 body {
-	background-image:url("/assets/background.png");
+	background-image:url("/assets/backgroundCropped.png");
 }
 
 .header {
@@ -101,11 +101,20 @@ li {
 }
 
 #composeSubject {
-	height:24px;
+	height:30px;
 	width:100%;
 }
 
 #composeDetails {
-	min-height:200px;
+	min-height:300px;
 	width:100%;
+}
+
+#to {
+	margin-bottom:12px;
+}
+
+.nextItem {
+	margin-top:12px;
+	font-size:14px;
 }

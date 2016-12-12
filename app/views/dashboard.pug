@@ -58,7 +58,7 @@ html(lang="en")
                         div.modal-body
                             table.table#contactsTable
                         div.modal-footer
-                            button.btn.btn-default(type='button' data-dismiss='modal' data-toggle='modal' data-target='#composeModal') Choose Recipient(s)
+                            button.btn.btn-default(type='button' data-dismiss='modal' data-toggle='modal' data-target='#composeModal') Compose
                             button.btn.btn-default(type='button' data-dismiss='modal') Close
 
             // Compose Message Modal
@@ -69,10 +69,12 @@ html(lang="en")
                             button.close(type='button' class='close' data-dismiss="modal") &times;
                             h4.modal-title New Message
                         div.modal-body
-                            p Subject
+                            button.btn.btn-default.btn-lg.contacts#to(type='button' data-dismiss='modal' data-toggle='modal' data-target='#contactsModal') To
+                            b
+                                p.nextItem Subject
                             textarea#composeSubject
-                            p Details
+                            b
+                                p.nextItem Details
                             textarea#composeDetails
                         div.modal-footer
-                            button.btn.btn-default.contacts(type='button' data-dismiss='modal' data-toggle='modal' data-target='#contactsModal') Find Recipient(s)
                             button.btn.btn-default#send(type='button') Send
