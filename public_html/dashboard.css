@@ -44,24 +44,11 @@ li {
 	top:0%;
 }
 
-#home {
-
-}
-
 #messagesItem {
 	top:20%;
 }
-
-#messages {
-
-}
-
 #composeItem {
 	top:40%;
-}
-
-#compose {
-
 }
 
 #contactsItem {
@@ -70,10 +57,6 @@ li {
 
 #logoutForm {
 	top:80%;
-}
-
-#logout {
-
 }
 
 #mainWindow {
@@ -88,39 +71,23 @@ li {
 	position:absolute;
 }
 
-#messagesTab {
-
-}
-
-#messagesTable {
-
-}
-
 .modal-content {
 	background-image:url("/assets/backgroundCropped.png");
 }
 
-#userRecipient {
+.form-control {
 	margin-top:6px;
 	margin-bottom:6px;
 }
 
 #messageTitle {
-	height:30px;
 	width:100%;
-	margin-top:6px;
-	margin-bottom:6px;
 }
 
 #messageText {
-	min-height:300px;
+	min-height:500px;
 	width:100%;
-	margin-top:6px;
-	margin-bottom:6px;
-}
-
-#to {
-	margin-bottom:6px;
+	padding:12px;
 }
 
 .nextItem {

@@ -69,9 +69,9 @@ html(lang="en")
                             button.close(type='button' class='close' data-dismiss="modal") &times;
                             h4.modal-title New Message
                         div.modal-body
-                            button.btn.btn-default.btn-lg.contacts#to(type='button' data-dismiss='modal' data-toggle='modal' data-target='#contactsModal') To
-                            input.form-control#userRecipient(type='text' placeholder='recipients username')
-                            textarea#messageTitle(placeholder='subject')
+                            input.form-control#userRecipient(type='text' placeholder='recipient')
+                            input.form-control#messageTitle(placeholder='subject')
                             textarea#messageText(placeholder='message')
                         div.modal-footer
+                            button.btn.btn-default.contacts#to(type='button' data-dismiss='modal' data-toggle='modal' data-target='#contactsModal') Contacts
                             button.btn.btn-default#send(type='button') Send
