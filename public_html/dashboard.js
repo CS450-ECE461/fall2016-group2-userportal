@@ -34,7 +34,7 @@ $(document).ready(function () {
       $.getJSON("/dashboard/messages", function (messages) {
         $("#messagesTable").append ("<thead><tr><th> Sender </th><th> Receiver </th><th> Content </th></tr></thead>");
         $.each (messages, function (index, message) {
-          $("#messagesTable").append ("<tr id='" + index + "'><td>" + message.sender_email + "</td><td>" + message.receiver_email + "</td><td>" + message.content + "</td></tr>");
+          $("#messagesTable").append ("<tr id='" + index + "'><td>" + message.sender + "</td><td>" + message.receiver + "</td><td>" + message.content + "</td></tr>");
         });
       });
 
@@ -44,8 +44,17 @@ $(document).ready(function () {
 
   // Event Listener for send message button
   $('#send').on ('click', function () {
-    $.post ('/dashboard/compose/send', {}, function (message) {
-      $('.close').trigger ('click');
+	  var messageText = $('#messageText').val();
+	  var recipient = $('#userRecipient').val();
+	  var messageTitle = $('#messageTitle').val();
+	  var data = {
+		  content: messageText,
+		  title: messageTitle,
+		  user: recipient
+	  };
+    $.post ('/dashboard/compose/send', data, function (message) {
+      console.log (messageText);
+      $('.close').trigger('click');
     })
     .fail(function (err) {
       console.log (err);

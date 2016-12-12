@@ -25,7 +25,7 @@ DashboardController.prototype.messages = function () {
     return function (req, res) {
         var token = req.user;
 
-        var route = '/v1/messages';
+        var route = '/v1/messages/received';
         if (process.env.NODE_ENV == 'test') {
             route = '/mock/messageTest';
         }
@@ -51,17 +51,15 @@ DashboardController.prototype.messages = function () {
 //
 DashboardController.prototype.send = function () {
     return function (req, res) {
-
         var token = req.user;
-        var contact = 'danieljpeck93@gmail.com';
+        var contact = req.body.user;
         var dt = Date.now()+10000;
-        var title = "Demo Day!!!";
-        var message = "Hey that was a pretty cool demo, right??";
+        var title = req.body.title;
+        var message = req.body.content;
 
         var messageData = {
             message: {
-                sender_email: 'danieljpeck93@gmail.com',
-                receiver_email: contact,
+                receiver: contact,
                 received: false,
                 viewed: false,
                 //expireAt: dt,
